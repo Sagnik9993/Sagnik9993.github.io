@@ -2,11 +2,25 @@
 <html>
 <head>
     <title>Information about Sagnik</title>
+    <style>
+        /* This is the logical part that handles the color changes */
+        @keyframes colorChange {
+            0%   { color: red; }
+            25%  { color: #00FF00; } /* Neon Green */
+            50%  { color: #00CCFF; } /* Bright Blue */
+            75%  { color: #FFFF00; } /* Yellow */
+            100% { color: red; }    /* Back to red to loop smoothly */
+        }
+
+        .colorful-text {
+            animation: colorChange 4s linear infinite; /* Cycles colors every 4 seconds */
+        }
+    </style>
 </head>
 <body style="background-color: #36454F; color: white; font-family: sans-serif; margin: 0; padding: 20px;">
     
     <marquee scrollamount="10">
-        <h1 style="color: #FF4747; text-shadow: 2px 2px 4px #000;">Information About Sagnik</h1>
+        <h1 class="colorful-text">Information About Sagnik</h1>
     </marquee>
     
     <br>
@@ -19,16 +33,8 @@
         
         <p>
             <b>Explore Music Directory:</b> 
-            <a href="file:///F:/Sagnik/Sagnik" style="color: #00CCFF; text-decoration: none; border-bottom: 1px dashed #00CCFF;">Click here to open folder</a>
+            <a href="Sagnik/Sagnik" style="color: #00CCFF; text-decoration: none; border-bottom: 1px dashed #00CCFF;">Click here to open folder</a>
         </p>
-
-        <div style="margin-top: 20px;">
-            <p><b>Quick Play (Illuminati/Aavesham):</b></p>
-            <audio controls style="width: 100%; max-width: 400px;">
-                <source src="F:/Sagnik/Sagnik/illuminati.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
     </div>
 
     <div style="height: 200px;"></div> 
