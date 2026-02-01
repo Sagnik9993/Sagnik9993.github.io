@@ -3,21 +3,53 @@
 <head>
     <title>Information about Sagnik</title>
     <style>
-        /* This is the logical part that handles the color changes */
+        /* CSS Animation for the colorful title */
         @keyframes colorChange {
-            0%   { color: red; }
-            25%  { color: #00FF00; } /* Neon Green */
-            50%  { color: #00CCFF; } /* Bright Blue */
-            75%  { color: #FFFF00; } /* Yellow */
-            100% { color: red; }    /* Back to red to loop smoothly */
+            0%   { color: #FF4747; }
+            25%  { color: #00FF00; }
+            50%  { color: #00CCFF; }
+            75%  { color: #FFFF00; }
+            100% { color: #FF4747; }
         }
 
         .colorful-text {
-            animation: colorChange 4s linear infinite; /* Cycles colors every 4 seconds */
+            animation: colorChange 4s linear infinite;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        body {
+            background-color: #36454F;
+            color: white;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #555;
+            display: inline-block;
+            text-align: left;
+            max-width: 80%;
+        }
+
+        a {
+            color: #00CCFF;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px dashed #00CCFF;
+        }
+
+        a:hover {
+            color: #FFD700;
+            border-bottom: 1px solid #FFD700;
         }
     </style>
 </head>
-<body style="background-color: #36454F; color: white; font-family: sans-serif; margin: 0; padding: 20px;">
+<body>
     
     <marquee scrollamount="10">
         <h1 class="colorful-text">Information About Sagnik</h1>
@@ -25,25 +57,33 @@
     
     <br>
     
-    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+    <div class="container">
         <p style="font-size: 1.2em; line-height: 1.6;">
-            <b>Studies in 8th Standard in St. James' School, Binnaguri</b><br>
-            <b>Lives in Ethelbari, Checkpost</b>
+            <b>Standard:</b> 8th Standard, St. James' School, Binnaguri<br>
+            <b>Location:</b> Ethelbari, Checkpost
         </p>
         
         <p>
-            <b>Explore Music Directory:</b> 
-            <a href="Sagnik/Sagnik" style="color: #00CCFF; text-decoration: none; border-bottom: 1px dashed #00CCFF;">Click here to open folder</a>
+            <b>Music Gallery:</b> 
+            <a href="Sagnik/Sagnik/">Click here to listen to music</a>
         </p>
+
+        <div style="margin-top: 20px; border-top: 1px solid #444; padding-top: 15px;">
+            <p><b>Quick Play (Aavesham/Illuminati):</b></p>
+            <audio controls style="width: 100%;">
+                <source src="Sagnik/Sagnik/illuminati.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
     </div>
 
-    <div style="height: 200px;"></div> 
+    <div style="height: 150px;"></div> 
 
-    <footer style="border-top: 1px solid #555; padding-top: 10px;">
-        <h6 style="color: #AAA;">
-            If you are viewing this for suggestions, please feel free to contact: 
-            <span style="color: #00FF00;">9588910208</span>
-        </h6>
+    <footer>
+        <p style="color: #AAA; font-size: 0.8em;">
+            For suggestions, please contact: 
+            <span style="color: #00FF00; font-weight: bold;">9588910208</span>
+        </p>
     </footer>
 
 </body>
