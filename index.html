@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sagnik's Official Gallery</title>
+    <title>Sagnik's Information</title>
     <style>
         /* Colorful Animated Title */
         @keyframes colorChange {
-            0%   { color: #FF4747; }
-            25%  { color: #00FF00; }
-            50%  { color: #00CCFF; }
-            75%  { color: #FFFF00; }
-            100% { color: #FF4747; }
+            0%   { color: #FF0000; }
+            33%  { color: #0000FF; }
+            66%  { color: #FFFF00; }
+            100% { color: #FF0000; }
         }
 
         .colorful-text {
             animation: colorChange 4s linear infinite;
-            text-shadow: 2px 2px 4px #000;
+            text-shadow: 1px 1px 2px #FFF;
             font-size: 2.2em;
+            font-weight: bold;
         }
 
         body {
-            background-color: #1a1a1a;
-            color: white;
+            /* Changed background to Cyan as requested */
+            background-color: #00FFFF; 
+            color: #000; /* Dark text for better contrast on Cyan */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
@@ -30,65 +31,66 @@
         }
 
         .container {
-            background: rgba(255,255,255,0.05);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid #444;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white for readability */
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #333;
             display: inline-block;
             text-align: left;
             max-width: 90%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
 
         .media-card {
-            margin-top: 25px;
+            margin-top: 20px;
             padding: 15px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 12px;
-            border-left: 4px solid #00CCFF;
+            background: #FFF;
+            border-radius: 10px;
+            border: 1px solid #999;
         }
 
-        video, audio {
+        video {
             width: 100%;
-            border-radius: 8px;
+            border-radius: 5px;
             margin-top: 10px;
-            outline: none;
+            background: #000;
+        }
+
+        /* Specific fix for the 'Spacebar' video glitch */
+        .illuminati-player {
+            height: 50px; 
+            object-fit: contain;
         }
 
         footer {
-            margin-top: 50px;
-            color: #777;
-            font-size: 0.8em;
+            margin-top: 40px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
     <marquee scrollamount="8">
-        <h1 class="colorful-text">Sagnik's Multimedia Hub</h1>
+        <h1 class="colorful-text">Information About Sagnik</h1>
     </marquee>
 
     <div class="container">
-        <p style="font-size: 1.1em;">
-            <b>Student:</b> St. James' School, Binnaguri<br>
+        <p style="font-size: 1.1em; margin-bottom: 20px;">
+            <b>Standard:</b> 8th Standard, St. James' School, Binnaguri<br>
             <b>Location:</b> Ethelbari, Checkpost
         </p>
 
         <div class="media-card">
-            <p style="color: #FFD700; font-weight: bold; margin-bottom: 5px;">
-                🎬 Featured: Powerhouse (Coolie)
-            </p>
+            <p><b>🎬 Featured Video: Powerhouse (Coolie)</b></p>
             <video controls>
                 <source src="videoplayback.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
 
-        <div class="media-card" style="border-left-color: #00FF00;">
-            <p style="color: #00FF00; font-weight: bold; margin-bottom: 5px;">
-                🎵 Quick Play: Illuminati
-            </p>
-            <video controls style="max-height: 60px;">
+        <div class="media-card">
+            <p><b>🎵 Quick Play: Illuminati</b></p>
+            <video controls class="illuminati-player">
                 <source src="Illuminati Video..mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -96,10 +98,7 @@
     </div>
 
     <footer>
-        <p>
-            Status: System Rectified | Birthday Countdown: 35 Days<br>
-            Contact: <span style="color: #00FF00;">9588910208</span>
-        </p>
+        <p>Contact: <span style="color: #0000FF;">9588910208</span></p>
     </footer>
 
 </body>
