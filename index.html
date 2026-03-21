@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sagnik's Information</title>
     <style>
-        /* Colorful Animated Title - Restored */
         @keyframes colorChange {
             0%   { color: #FF4747; }
             25%  { color: #00FF00; }
@@ -13,14 +12,12 @@
             75%  { color: #FFFF00; }
             100% { color: #FF4747; }
         }
-
         .colorful-text {
             animation: colorChange 4s linear infinite;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             font-size: 2.2em;
             font-weight: bold;
         }
-
         body {
             background-color: #00FFFF; /* Cyan Background */
             color: #333;
@@ -29,7 +26,6 @@
             padding: 20px;
             text-align: center;
         }
-
         .container {
             background: rgba(255, 255, 255, 0.9);
             padding: 30px;
@@ -38,44 +34,30 @@
             display: inline-block;
             text-align: left;
             max-width: 85%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            /* Corner Accents Restored */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border-left: 8px solid #FF4747;
             border-top: 8px solid #00CCFF;
         }
-
-        .media-card {
+        .video-card {
             margin-top: 25px;
             padding: 15px;
-            background: #f9f9f9;
+            background: #f0f0f0;
             border-radius: 12px;
             border: 1px solid #ddd;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
         }
-
-        /* Video Styles */
         video {
             width: 100%;
             border-radius: 8px;
-            margin-top: 10px;
             background: #000;
         }
-
-        /* Spacebar-Fix for Illuminati Player */
-        .illuminati-player {
-            height: 55px;
-            width: 100%;
-            object-fit: contain;
-        }
-
-        b {
-            color: #2c3e50;
-        }
-
-        footer {
-            margin-top: 50px;
+        .music-link {
+            margin-top: 30px;
+            font-size: 1.1em;
             font-weight: bold;
-            color: #444;
+        }
+        a {
+            color: #0000FF;
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -91,7 +73,7 @@
             <b>Location:</b> Ethelbari, Checkpost
         </p>
 
-        <div class="media-card">
+        <div class="video-card">
             <p style="color: #FF4747; font-weight: bold;">🎬 Featured Video: Powerhouse (Coolie)</p>
             <video controls>
                 <source src="videoplayback.mp4" type="video/mp4">
@@ -99,17 +81,15 @@
             </video>
         </div>
 
-        <div class="media-card">
-            <p style="color: #00CCFF; font-weight: bold;">🎵 Quick Play: Illuminati</p>
-            <video controls class="illuminati-player">
-                <source src="Illuminati Video..mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <div class="music-link">
+            <p>If you want to listen to some music to calm your mind 
+               <a href="music.html">click here</a>
+            </p>
         </div>
     </div>
 
-    <footer>
-        <p>Contact: <span style="color: #0000FF;">9588910208</span></p>
+    <footer style="margin-top: 50px;">
+        <p>Contact: <b>9588910208</b></p>
     </footer>
 
 </body>
