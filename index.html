@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Information about Sagnik</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagnik's Official Gallery</title>
     <style>
-        /* CSS Animation for the colorful title */
+        /* Colorful Animated Title */
         @keyframes colorChange {
             0%   { color: #FF4747; }
             25%  { color: #00FF00; }
@@ -15,74 +17,88 @@
         .colorful-text {
             animation: colorChange 4s linear infinite;
             text-shadow: 2px 2px 4px #000;
+            font-size: 2.2em;
         }
 
         body {
-            background-color: #36454F;
+            background-color: #1a1a1a;
             color: white;
-            font-family: sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
             text-align: center;
         }
 
         .container {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
             padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #555;
+            border-radius: 20px;
+            border: 1px solid #444;
             display: inline-block;
             text-align: left;
-            max-width: 80%;
+            max-width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        a {
-            color: #00CCFF;
-            text-decoration: none;
-            font-weight: bold;
-            border-bottom: 1px dashed #00CCFF;
+        .media-card {
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            border-left: 4px solid #00CCFF;
         }
 
-        a:hover {
-            color: #FFD700;
-            border-bottom: 1px solid #FFD700;
+        video, audio {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 10px;
+            outline: none;
+        }
+
+        footer {
+            margin-top: 50px;
+            color: #777;
+            font-size: 0.8em;
         }
     </style>
 </head>
 <body>
-    
-    <marquee scrollamount="10">
-        <h1 class="colorful-text">Information About Sagnik</h1>
+
+    <marquee scrollamount="8">
+        <h1 class="colorful-text">Sagnik's Multimedia Hub</h1>
     </marquee>
-    
-    <br>
-    
+
     <div class="container">
-        <p style="font-size: 1.2em; line-height: 1.6;">
-            <b>Standard:</b> 8th Standard, St. James' School, Binnaguri<br>
+        <p style="font-size: 1.1em;">
+            <b>Student:</b> St. James' School, Binnaguri<br>
             <b>Location:</b> Ethelbari, Checkpost
         </p>
-        
-        <p>
-            <b>Music Gallery:</b> 
-            <a href="Sagnik/Sagnik/">Click here to listen to music</a>
-        </p>
 
-        <div style="margin-top: 20px; border-top: 1px solid #444; padding-top: 15px;">
-            <p><b>Quick Play (Illuminati Song):</b></p>
-            <audio controls style="width: 100%;">
-                <source src=""F:\Sagnik\Sagnik\Illuminati Video..mp4"" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
+        <div class="media-card">
+            <p style="color: #FFD700; font-weight: bold; margin-bottom: 5px;">
+                🎬 Featured: Powerhouse (Coolie)
+            </p>
+            <video controls>
+                <source src="videoplayback.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="media-card" style="border-left-color: #00FF00;">
+            <p style="color: #00FF00; font-weight: bold; margin-bottom: 5px;">
+                🎵 Quick Play: Illuminati
+            </p>
+            <video controls style="max-height: 60px;">
+                <source src="Illuminati Video..mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
     </div>
 
-    <div style="height: 150px;"></div> 
-
     <footer>
-        <p style="color: #AAA; font-size: 0.8em;">
-            For suggestions, please contact: 
-            <span style="color: #00FF00; font-weight: bold;">9588910208</span>
+        <p>
+            Status: System Rectified | Birthday Countdown: 35 Days<br>
+            Contact: <span style="color: #00FF00;">9588910208</span>
         </p>
     </footer>
 
