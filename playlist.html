@@ -25,13 +25,17 @@
             border-top: 8px solid #00CCFF;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-        
-        .song-card {
+        .song-card, .video-card {
             background: white;
             margin-bottom: 15px;
             padding: 12px;
             border-radius: 10px;
             border: 1px solid #ddd;
+        }
+        .video-card video {
+            width: 100%; 
+            border-radius: 8px;
+            margin-top: 5px;
         }
         .song-title { font-weight: bold; font-size: 0.9em; color: #2c3e50; display: block; margin-bottom: 8px; }
         audio { width: 100%; height: 35px; }
@@ -158,14 +162,14 @@
            <span class="song-title">23. Night Begins To Shine - Teen Titans Go</span>
             <audio controls preload="none"><source src="track24.mp3" type="audio/mpeg"></audio>
         </div>
- <div class="video-card">
-            <p style="color: #FF4747; font-weight: bold;">🎬 Featured Video: Powerhouse (From Coolie)</p>
+
+        <div class="video-card">
+            <span class="song-title" style="color: #FF4747;">🎬 Featured Video: Powerhouse (From Coolie)</span>
             <video controls>
                 <source src="videoplayback.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
-
 
         <div class="footer-text">
             <p>Non-commercial student project. Credits to original labels.</p>
