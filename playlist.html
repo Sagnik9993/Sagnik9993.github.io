@@ -31,6 +31,12 @@
             padding: 12px;
             border-radius: 10px;
             border: 1px solid #ddd;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .song-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-color: #FF4747;
         }
         .video-card video {
             width: 100%; 
@@ -172,7 +178,6 @@
             <span class="song-title" style="color: #FF4747;">🎬 Featured Video: Powerhouse (From Coolie)</span>
             <video controls>
                 <source src="videoplayback.mp4" type="video/mp4">
-                Your browser does not support the video tag.
             </video>
         </div>
 
