@@ -4,8 +4,9 @@
     <meta name="robots" content="noindex, nofollow">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sagnik's Information</title>
+    <title>Information About Sagnik</title>
     <style>
+        /* 🌈 RAINBOW ANIMATION */
         @keyframes colorChange {
             0%   { color: #FF4747; }
             25%  { color: #00FF00; }
@@ -19,6 +20,7 @@
             font-size: 2.2em;
             font-weight: bold;
         }
+
         body {
             background-color: #00FFFF; /* Cyan Background */
             color: #333;
@@ -26,8 +28,10 @@
             margin: 0;
             padding: 20px;
             text-align: center;
-            min-height: 150vh; /* Added height to allow scrolling to test the sticky video */
+            /* Extra height so you can test the scrolling effect */
+            min-height: 120vh; 
         }
+
         .container {
             background: rgba(255, 255, 255, 0.9);
             padding: 30px;
@@ -39,33 +43,47 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             border-left: 8px solid #FF4747;
             border-top: 8px solid #00CCFF;
+            margin-top: 20px;
         }
 
-        /* 🎬 STICKY "AD-STYLE" VIDEO BOX */
+        /* 🎬 STICKY "AD-STYLE" VIDEO BOX (FLOATING) */
         .sticky-video-card {
-            position: fixed; /* Stays in place while scrolling */
-            bottom: 20px;
-            right: 20px;
-            width: 250px;
-            background: #f0f0f0;
+            position: fixed;    /* This is the secret to making it stick! */
+            bottom: 20px;       /* 20px from bottom */
+            right: 20px;        /* 20px from right */
+            width: 280px;       /* Width like a small ad */
+            background: #1a1a1a;
             padding: 10px;
-            border-radius: 12px;
-            border: 2px solid #FF4747;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            z-index: 9999;
+            border-radius: 15px;
+            border: 3px solid #FF4747;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 10000;     /* Keeps it on top of everything */
         }
-        
-        video {
+
+        #featured-video {
             width: 100%;
-            border-radius: 8px;
+            border-radius: 10px;
+            display: block;
             background: #000;
+        }
+
+        .video-label {
+            color: #FF4747;
+            font-weight: bold;
+            font-size: 11px;
+            margin-bottom: 5px;
+            display: block;
+            text-align: center;
+            font-family: monospace;
         }
 
         .music-link {
             margin-top: 30px;
             font-size: 1.1em;
             font-weight: bold;
+            text-align: center;
         }
+
         a {
             color: #0000FF;
             text-decoration: underline;
@@ -86,14 +104,15 @@
 
         <div class="music-link">
             <p>If you want to listen to some music to calm your mind 
-               <a href="playlist.html">click here</a>
+               <br><br>
+               <a href="playlist.html">🎵 CLICK HERE FOR PLAYLIST 🎵</a>
             </p>
         </div>
     </div>
 
     <div class="sticky-video-card">
-        <p style="color: #FF4747; font-weight: bold; font-size: 12px; margin: 0 0 5px 0;">🎬 Featured: Illuminati</p>
-        <video autoplay loop muted playsinline>
+        <span class="video-label">🎬 NOW PLAYING: ILLUMINATI</span>
+        <video id="featured-video" autoplay loop muted playsinline>
             <source src="track.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
