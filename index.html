@@ -26,6 +26,7 @@
             margin: 0;
             padding: 20px;
             text-align: center;
+            min-height: 150vh; /* Added height to allow scrolling to test the sticky video */
         }
         .container {
             background: rgba(255, 255, 255, 0.9);
@@ -39,18 +40,27 @@
             border-left: 8px solid #FF4747;
             border-top: 8px solid #00CCFF;
         }
-        .video-card {
-            margin-top: 25px;
-            padding: 15px;
+
+        /* 🎬 STICKY "AD-STYLE" VIDEO BOX */
+        .sticky-video-card {
+            position: fixed; /* Stays in place while scrolling */
+            bottom: 20px;
+            right: 20px;
+            width: 250px;
             background: #f0f0f0;
+            padding: 10px;
             border-radius: 12px;
-            border: 1px solid #ddd;
+            border: 2px solid #FF4747;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 9999;
         }
+        
         video {
             width: 100%;
             border-radius: 8px;
             background: #000;
         }
+
         .music-link {
             margin-top: 30px;
             font-size: 1.1em;
@@ -74,19 +84,20 @@
             <b>Location:</b> Ethelbari, Checkpost
         </p>
 
-        <div class="video-card">
-            <p style="color: #FF4747; font-weight: bold;">🎬 Featured Video: Illuminati (From "Aavesham")</p>
-            <video controls>
-                <source src="track.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-
         <div class="music-link">
             <p>If you want to listen to some music to calm your mind 
                <a href="playlist.html">click here</a>
             </p>
         </div>
     </div>
+
+    <div class="sticky-video-card">
+        <p style="color: #FF4747; font-weight: bold; font-size: 12px; margin: 0 0 5px 0;">🎬 Featured: Illuminati</p>
+        <video autoplay loop muted playsinline>
+            <source src="track.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
 </body>
 </html>
