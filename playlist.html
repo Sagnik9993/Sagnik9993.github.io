@@ -38,9 +38,9 @@
             border: 4px solid rgba(255, 255, 255, 0.5);
             transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1), opacity 1.2s ease, border 0.4s ease;
             position: relative;
-            /* Animation starts here */
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(80px);
+            will-change: transform, opacity;
         }
         .song-card.reveal, .video-card.reveal {
             opacity: 1;
@@ -104,7 +104,7 @@
 
         <div class="video-card">
             <span class="song-title" style="color: #FF4747;">🎬 Featured Video: Powerhouse (From Coolie)</span>
-            <video controls><source src="videoplayback.mp4" type="video/mp4"></video>
+            <video controls preload="none"><source src="videoplayback.mp4" type="video/mp4"></video>
         </div>
 
         <div class="footer-text">
@@ -122,16 +122,21 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 50; 
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 50) {
                     reveals[i].classList.add("reveal");
                 }
             }
         }
+        document.addEventListener('play', function(e){
+            var allPlayers = document.querySelectorAll('audio, video');
+            for(var i = 0; i < allPlayers.length; i++){
+                if(allPlayers[i] != e.target){
+                    allPlayers[i].pause();
+                }
+            }
+        }, true);
         window.addEventListener("scroll", reveal);
-        // This makes sure cards show up even if you don't scroll
-        window.addEventListener("load", reveal);
-        // Final backup trigger
+        window.onload = reveal;
         setTimeout(reveal, 500);
     </script>
 
