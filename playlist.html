@@ -21,52 +21,43 @@
             text-align: left;
             width: 95%;
             max-width: 600px;
-            border-left: 8px solid #FF4747;
-            border-top: 8px solid #00CCFF;
+            /* ⚡ INCREASED THICKNESS: 8px to 12px for the main container */
+            border-left: 12px solid #FF4747;
+            border-top: 12px solid #00CCFF;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         .song-card, .video-card {
             background: white;
             margin-bottom: 15px;
             padding: 12px;
-            border-radius: 10px;
-            border: 2px solid #ddd;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+            border-radius: 12px;
+            /* ⚡ INCREASED THICKNESS: Moved from 1px to 4px */
+            border: 4px solid #eeeeee;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
-        /* 🌈 GOOGLE AI STYLE HOVER */
         .song-card:hover {
-            transform: translateY(-5px);
-            border-color: transparent;
-            /* Shifting Glow Shadow */
-            box-shadow: 0 0 15px rgba(66, 133, 244, 0.4), 
-                        0 0 30px rgba(219, 68, 55, 0.2), 
-                        0 0 45px rgba(244, 180, 0, 0.1);
-            background: linear-gradient(white, white) padding-box,
-                        linear-gradient(45deg, #4285F4, #DB4437, #F4B400, #0F9D58) border-box;
-            border: 2px solid transparent;
+            transform: translateY(-8px);
+            /* 🔴 THICK RED BORDER ON HOVER */
+            border-color: #FF4747;
+            box-shadow: 0 10px 20px rgba(255, 71, 71, 0.2);
         }
-
+        .song-card:nth-child(even):hover {
+            /* 🔵 THICK BLUE BORDER ON HOVER */
+            border-color: #00CCFF;
+            box-shadow: 0 10px 20px rgba(0, 204, 255, 0.2);
+        }
         .video-card video {
             width: 100%; 
             border-radius: 8px;
             margin-top: 5px;
         }
-        .song-title { font-weight: bold; font-size: 0.9em; color: #2c3e50; display: block; margin-bottom: 8px; }
+        .song-title { font-weight: bold; font-size: 0.95em; color: #2c3e50; display: block; margin-bottom: 10px; }
         
-        /* Text color change on hover to match AI vibe */
-        .song-card:hover .song-title {
-            background: linear-gradient(45deg, #4285F4, #DB4437);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         audio { width: 100%; height: 35px; }
         .footer-text { font-size: 0.75em; color: #777; margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: center; }
         .gemini-link { color: #4285F4; font-weight: bold; font-style: italic; text-decoration: none; }
-        .gemini-link:hover { text-decoration: underline; }
+        
+        center a { font-weight:bold; color:blue; text-decoration:none; border-bottom: 2px solid blue; }
     </style>
 </head>
 <body>
@@ -74,108 +65,34 @@
     <h1 style="color: #333;">🎵 Calm Your Mind</h1>
 
     <div class="container">
-        <div class="song-card">
-           <span class="song-title">1. ATLXS - Passo Bem Solto (Super Slowed)</span>
-            <audio controls preload="none"><source src="track4.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">2. Illuminati - Aavesham (Original Version)</span>
-            <audio controls preload="none"><source src="track11.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">3. Aayi Nai - Stree 2</span>
-            <audio controls preload="none"><source src="track2.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">4. Armadham - Aavesham</span>
-            <audio controls preload="none"><source src="track3.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">5. Believer - Imagine Dragons</span>
-            <audio controls preload="none"><source src="track12.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">6. Bones - Imagine Dragons</span>
-            <audio controls preload="none"><source src="track13.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">7. Lutt Putt Gaya - Dunki</span>
-            <audio controls preload="none"><source src="track5.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">8. O Maahi - Dunki</span>
-            <audio controls preload="none"><source src="track6.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">9. Fa9la - Rehman Dakait</span>
-            <audio controls preload="none"><source src="track8.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">10. Hukum - Jailer</span>
-            <audio controls preload="none"><source src="track9.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">11. Illuminati (Hindi Dubbed Version)</span>
-            <audio controls preload="none"><source src="track10.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">12. Kaathu Mela - Paal Dabba</span>
-            <audio controls preload="none"><source src="track19.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">13. Main Nikla Gaddi Leke - Gadar 2</span>
-            <audio controls preload="none"><source src="track14.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">14. Mera Wala Dance - Simmba</span>
-            <audio controls preload="none"><source src="track15.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">15. Mobsta - Coolie</span>
-            <audio controls preload="none"><source src="track16.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">16. Naacho Naacho - RRR</span>
-            <audio controls preload="none"><source src="track17.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">17. Odimaga - Aavesham</span>
-            <audio controls preload="none"><source src="track18.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">18. Powerhouse - Coolie</span>
-            <audio controls preload="none"><source src="track20.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">19. Pushpa Pushpa - Pushpa 2</span>
-            <audio controls preload="none"><source src="track21.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">20. Rise Up - Teen Titans Go</span>
-            <audio controls preload="none"><source src="track22.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">21. Sapphire - Ed Sheeran</span>
-            <audio controls preload="none"><source src="track7.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">22. Shaky - Sanju Rathod</span>
-            <audio controls preload="none"><source src="track23.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">23. Night Begins To Shine - Teen Titans Go</span>
-            <audio controls preload="none"><source src="track24.mp3" type="audio/mpeg"></audio>
-        </div>
-        <div class="song-card">
-           <span class="song-title">24. Chinta Ta Ta Chita Chita - Rowdy Rathore</span>
-            <audio controls preload="none"><source src="track25.mp3" type="audio/mpeg"></audio>
-        </div>
+        <div class="song-card"><span class="song-title">1. ATLXS - Passo Bem Solto (Super Slowed)</span><audio controls preload="none"><source src="track4.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">2. Illuminati - Aavesham (Original Version)</span><audio controls preload="none"><source src="track11.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">3. Aayi Nai - Stree 2</span><audio controls preload="none"><source src="track2.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">4. Armadham - Aavesham</span><audio controls preload="none"><source src="track3.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">5. Believer - Imagine Dragons</span><audio controls preload="none"><source src="track12.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">6. Bones - Imagine Dragons</span><audio controls preload="none"><source src="track13.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">7. Lutt Putt Gaya - Dunki</span><audio controls preload="none"><source src="track5.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">8. O Maahi - Dunki</span><audio controls preload="none"><source src="track6.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">9. Fa9la - Rehman Dakait</span><audio controls preload="none"><source src="track8.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">10. Hukum - Jailer</span><audio controls preload="none"><source src="track9.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">11. Illuminati (Hindi Dubbed Version)</span><audio controls preload="none"><source src="track10.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">12. Kaathu Mela - Paal Dabba</span><audio controls preload="none"><source src="track19.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">13. Main Nikla Gaddi Leke - Gadar 2</span><audio controls preload="none"><source src="track14.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">14. Mera Wala Dance - Simmba</span><audio controls preload="none"><source src="track15.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">15. Mobsta - Coolie</span><audio controls preload="none"><source src="track16.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">16. Naacho Naacho - RRR</span><audio controls preload="none"><source src="track17.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">17. Odimaga - Aavesham</span><audio controls preload="none"><source src="track18.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">18. Powerhouse - Coolie</span><audio controls preload="none"><source src="track20.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">19. Pushpa Pushpa - Pushpa 2</span><audio controls preload="none"><source src="track21.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">20. Rise Up - Teen Titans Go</span><audio controls preload="none"><source src="track22.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">21. Sapphire - Ed Sheeran</span><audio controls preload="none"><source src="track7.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">22. Shaky - Sanju Rathod</span><audio controls preload="none"><source src="track23.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">23. Night Begins To Shine - Teen Titans Go</span><audio controls preload="none"><source src="track24.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">24. Chinta Ta Ta Chita Chita - Rowdy Rathore</span><audio controls preload="none"><source src="track25.mp3" type="audio/mpeg"></audio></div>
 
         <div class="video-card">
             <span class="song-title" style="color: #FF4747;">🎬 Featured Video: Powerhouse (From Coolie)</span>
-            <video controls>
-                <source src="videoplayback.mp4" type="video/mp4">
-            </video>
+            <video controls><source src="videoplayback.mp4" type="video/mp4"></video>
         </div>
 
         <div class="footer-text">
@@ -184,7 +101,7 @@
         </div>
         
         <br>    
-        <center><a href="index.html" style="font-weight:bold; color:blue; text-decoration:none;">← Back to Profile</a></center>
+        <center><a href="index.html">← Back to Profile</a></center>
     </div>
 
 </body>
