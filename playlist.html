@@ -12,52 +12,54 @@
             margin: 0;
             padding: 20px;
             text-align: center;
+            background-attachment: fixed;
         }
         .container {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             padding: 25px;
             border-radius: 20px;
             display: inline-block;
             text-align: left;
             width: 95%;
             max-width: 600px;
-            /* ⚡ INCREASED THICKNESS: 8px to 12px for the main container */
-            border-left: 12px solid #FF4747;
-            border-top: 12px solid #00CCFF;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 12px solid rgba(255, 71, 71, 0.8);
+            border-top: 12px solid rgba(0, 204, 255, 0.8);
+            border-right: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
         }
         .song-card, .video-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             margin-bottom: 15px;
             padding: 12px;
             border-radius: 12px;
-            /* ⚡ INCREASED THICKNESS: Moved from 1px to 4px */
-            border: 4px solid #eeeeee;
+            border: 4px solid rgba(255, 255, 255, 0.5);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .song-card:hover {
             transform: translateY(-8px);
-            /* 🔴 THICK RED BORDER ON HOVER */
+            background: rgba(255, 255, 255, 0.8);
             border-color: #FF4747;
-            box-shadow: 0 10px 20px rgba(255, 71, 71, 0.2);
+            box-shadow: 0 10px 20px rgba(255, 71, 71, 0.3);
         }
         .song-card:nth-child(even):hover {
-            /* 🔵 THICK BLUE BORDER ON HOVER */
             border-color: #00CCFF;
-            box-shadow: 0 10px 20px rgba(0, 204, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 204, 255, 0.3);
         }
         .video-card video {
             width: 100%; 
             border-radius: 8px;
             margin-top: 5px;
         }
-        .song-title { font-weight: bold; font-size: 0.95em; color: #2c3e50; display: block; margin-bottom: 10px; }
-        
+        .song-title { font-weight: bold; font-size: 0.95em; color: #1a1a1a; display: block; margin-bottom: 10px; }
         audio { width: 100%; height: 35px; }
-        .footer-text { font-size: 0.75em; color: #777; margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: center; }
-        .gemini-link { color: #4285F4; font-weight: bold; font-style: italic; text-decoration: none; }
-        
-        center a { font-weight:bold; color:blue; text-decoration:none; border-bottom: 2px solid blue; }
+        .footer-text { font-size: 0.75em; color: #333; margin-top: 20px; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; text-align: center; }
+        .gemini-link { color: #0056b3; font-weight: bold; font-style: italic; text-decoration: none; }
+        center a { font-weight:bold; color: #00008b; text-decoration:none; border-bottom: 2px solid #00008b; }
     </style>
 </head>
 <body>
