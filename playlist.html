@@ -3,42 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calm Your Mind Section | System Optimized</title>
+    <title>Sagnik's AI Station | Optimized</title>
     <style>
+        :root {
+            --ai-blue: #4285F4; --ai-purple: #9b51e0; --ai-red: #ff4747; --ai-yellow: #f4b400;
+        }
         body { margin: 0; padding: 20px; text-align: center; font-family: 'Segoe UI', sans-serif; background: #00FFFF; overflow-x: hidden; }
         
-        /* AI SEARCH CIRCLE */
-        .ai-circle-container { position: relative; width: 80px; height: 80px; margin: 0 auto 15px; }
-        .ai-circle {
+        /* THE AI RING EFFECT */
+        .ai-container { position: relative; width: 90px; height: 90px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; }
+        .ai-ring {
             position: absolute; width: 100%; height: 100%; border-radius: 50%;
-            background: radial-gradient(circle, #4285F4, #9b51e0, #ff4747, #f4b400);
-            filter: blur(6px); opacity: 0.7;
-            animation: rotate 4s linear infinite, pulse-glow 2s ease-in-out infinite alternate;
+            background: conic-gradient(var(--ai-blue), var(--ai-purple), var(--ai-red), var(--ai-yellow), var(--ai-blue));
+            animation: spin 3s linear infinite;
+            -webkit-mask: radial-gradient(circle, transparent 58%, black 60%);
+            mask: radial-gradient(circle, transparent 58%, black 60%);
         }
-        @keyframes rotate { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
-        @keyframes pulse-glow { from {transform: scale(0.95); opacity: 0.5;} to {transform: scale(1.1); opacity: 0.8;} }
-        
+        .ai-glow {
+            position: absolute; width: 120%; height: 120%;
+            background: radial-gradient(circle, rgba(66,133,244,0.3), transparent 70%);
+            filter: blur(10px); animation: breathe 2s ease-in-out infinite alternate;
+        }
+        .ai-letter { font-size: 1.8rem; font-weight: 900; color: #1a1a1a; z-index: 2; }
+        @keyframes spin { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
+        @keyframes breathe { from {transform: scale(0.8); opacity: 0.3;} to {transform: scale(1.1); opacity: 0.7;} }
+
+        /* STATUS BAR */
         .status-bar { 
             display: inline-flex; align-items: center; background: white; padding: 6px 18px; 
-            border-radius: 50px; border: 2px solid #1a1a1a; font-size: 0.8em; font-weight: 800; margin-bottom: 15px;
+            border-radius: 50px; border: 2px solid #1a1a1a; font-size: 0.8em; font-weight: 800; margin-bottom: 20px;
         }
-        .pulse-dot { width: 8px; height: 8px; background: #0f0; border-radius: 50%; margin-right: 8px; animation: p 1.5s infinite; }
+        .pulse { width: 8px; height: 8px; background: #0f0; border-radius: 50%; margin-right: 8px; animation: p 1.5s infinite; }
         @keyframes p { 0% {box-shadow: 0 0 0 0 #0f0;} 70% {box-shadow: 0 0 0 8px #0f00;} }
 
+        /* MAIN UI */
         .container { 
-            background: white; padding: 25px; border-radius: 25px; 
-            display: inline-block; text-align: left; width: 95%; max-width: 600px;
-            border-left: 10px solid #FF4747; border-top: 10px solid #4285F4;
+            background: white; padding: 25px; border-radius: 25px; display: inline-block; 
+            text-align: left; width: 95%; max-width: 600px;
+            border-left: 10px solid var(--ai-red); border-top: 10px solid var(--ai-blue);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-
-        .song-card, .video-card {
+        .card {
             background: #f9f9f9; margin-bottom: 15px; padding: 15px; border-radius: 15px;
             border: 2px solid #eee; transition: 0.3s; opacity: 0; transform: translateY(20px);
         }
-        .song-card.reveal, .video-card.reveal { opacity: 1; transform: translateY(0); }
-        .song-card:hover { border-color: #4285F4; transform: scale(1.02); background: #fff; }
+        .card.reveal { opacity: 1; transform: translateY(0); }
+        .card:hover { border-color: var(--ai-blue); transform: scale(1.02); background: #fff; }
 
+        /* NOTIFICATION */
         #np { 
             position: fixed; bottom: -80px; left: 50%; transform: translateX(-50%);
             background: #1a1a1a; color: #fff; padding: 12px 25px; border-radius: 50px;
@@ -53,49 +65,50 @@
 </head>
 <body>
 
-    <div class="ai-circle-container">
-        <div class="ai-circle"></div>
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: 900; color: #1a1a1a;">S</div>
+    <div class="ai-container">
+        <div class="ai-glow"></div>
+        <div class="ai-ring"></div>
+        <div class="ai-letter">S</div>
     </div>
 
-    <div class="status-bar"><div class="pulse-dot"></div><span>AI ENGINE | WHISKEY LAKE i3</span></div>
+    <div class="status-bar"><div class="pulse"></div><span>AI OPTIMIZED | WHISKEY LAKE i3</span></div>
 
     <h1>🎵 Calm Your Mind</h1>
     <div id="np">Playing: <span id="tn" style="color:#0ff">None</span></div>
 
     <div class="container">
-        <div class="song-card"><span class="title">1. ATLXS - Passo Bem Solto</span><audio controls preload="none"><source src="track4.mp3"></audio></div>
-        <div class="song-card"><span class="title">2. Illuminati - Aavesham (Original)</span><audio controls preload="none"><source src="track11.mp3"></audio></div>
-        <div class="song-card"><span class="title">3. Aayi Nai - Stree 2</span><audio controls preload="none"><source src="track2.mp3"></audio></div>
-        <div class="song-card"><span class="title">4. Armadham - Aavesham</span><audio controls preload="none"><source src="track3.mp3"></audio></div>
-        <div class="song-card"><span class="title">5. Believer - Imagine Dragons</span><audio controls preload="none"><source src="track12.mp3"></audio></div>
-        <div class="song-card"><span class="title">6. Bones - Imagine Dragons</span><audio controls preload="none"><source src="track13.mp3"></audio></div>
-        <div class="song-card"><span class="title">7. Lutt Putt Gaya - Dunki</span><audio controls preload="none"><source src="track5.mp3"></audio></div>
-        <div class="song-card"><span class="title">8. O Maahi - Dunki</span><audio controls preload="none"><source src="track6.mp3"></audio></div>
-        <div class="song-card"><span class="title">9. Fa9la - Rehman Dakait</span><audio controls preload="none"><source src="track8.mp3"></audio></div>
-        <div class="song-card"><span class="title">10. Hukum - Jailer</span><audio controls preload="none"><source src="track9.mp3"></audio></div>
-        <div class="song-card"><span class="title">11. Illuminati (Hindi Dubbed)</span><audio controls preload="none"><source src="track10.mp3"></audio></div>
-        <div class="song-card"><span class="title">12. Kaathu Mela - Paal Dabba</span><audio controls preload="none"><source src="track19.mp3"></audio></div>
-        <div class="song-card"><span class="title">13. Main Nikla Gaddi Leke</span><audio controls preload="none"><source src="track14.mp3"></audio></div>
-        <div class="song-card"><span class="title">14. Mera Wala Dance - Simmba</span><audio controls preload="none"><source src="track15.mp3"></audio></div>
-        <div class="song-card"><span class="title">15. Mobsta - Coolie</span><audio controls preload="none"><source src="track16.mp3"></audio></div>
-        <div class="song-card"><span class="title">16. Naacho Naacho - RRR</span><audio controls preload="none"><source src="track17.mp3"></audio></div>
-        <div class="song-card"><span class="title">17. Odimaga - Aavesham</span><audio controls preload="none"><source src="track18.mp3"></audio></div>
-        <div class="song-card"><span class="title">18. Powerhouse - Coolie</span><audio controls preload="none"><source src="track20.mp3"></audio></div>
-        <div class="song-card"><span class="title">19. Pushpa Pushpa - Pushpa 2</span><audio controls preload="none"><source src="track21.mp3"></audio></div>
-        <div class="song-card"><span class="title">20. Rise Up - Teen Titans Go</span><audio controls preload="none"><source src="track22.mp3"></audio></div>
-        <div class="song-card"><span class="title">21. Sapphire - Ed Sheeran</span><audio controls preload="none"><source src="track7.mp3"></audio></div>
-        <div class="song-card"><span class="title">22. Shaky - Sanju Rathod</span><audio controls preload="none"><source src="track23.mp3"></audio></div>
-        <div class="song-card"><span class="title">23. Night Begins To Shine</span><audio controls preload="none"><source src="track24.mp3"></audio></div>
-        <div class="song-card"><span class="title">24. Chinta Ta Ta - Rowdy Rathore</span><audio controls preload="none"><source src="track25.mp3"></audio></div>
+        <div class="card"><span class="title">1. ATLXS - Passo Bem Solto</span><audio controls preload="none"><source src="track4.mp3"></audio></div>
+        <div class="card"><span class="title">2. Illuminati - Aavesham (Original)</span><audio controls preload="none"><source src="track11.mp3"></audio></div>
+        <div class="card"><span class="title">3. Aayi Nai - Stree 2</span><audio controls preload="none"><source src="track2.mp3"></audio></div>
+        <div class="card"><span class="title">4. Armadham - Aavesham</span><audio controls preload="none"><source src="track3.mp3"></audio></div>
+        <div class="card"><span class="title">5. Believer - Imagine Dragons</span><audio controls preload="none"><source src="track12.mp3"></audio></div>
+        <div class="card"><span class="title">6. Bones - Imagine Dragons</span><audio controls preload="none"><source src="track13.mp3"></audio></div>
+        <div class="card"><span class="title">7. Lutt Putt Gaya - Dunki</span><audio controls preload="none"><source src="track5.mp3"></audio></div>
+        <div class="card"><span class="title">8. O Maahi - Dunki</span><audio controls preload="none"><source src="track6.mp3"></audio></div>
+        <div class="card"><span class="title">9. Fa9la - Rehman Dakait</span><audio controls preload="none"><source src="track8.mp3"></audio></div>
+        <div class="card"><span class="title">10. Hukum - Jailer</span><audio controls preload="none"><source src="track9.mp3"></audio></div>
+        <div class="card"><span class="title">11. Illuminati (Hindi Dubbed)</span><audio controls preload="none"><source src="track10.mp3"></audio></div>
+        <div class="card"><span class="title">12. Kaathu Mela - Paal Dabba</span><audio controls preload="none"><source src="track19.mp3"></audio></div>
+        <div class="card"><span class="title">13. Main Nikla Gaddi Leke</span><audio controls preload="none"><source src="track14.mp3"></audio></div>
+        <div class="card"><span class="title">14. Mera Wala Dance - Simmba</span><audio controls preload="none"><source src="track15.mp3"></audio></div>
+        <div class="card"><span class="title">15. Mobsta - Coolie</span><audio controls preload="none"><source src="track16.mp3"></audio></div>
+        <div class="card"><span class="title">16. Naacho Naacho - RRR</span><audio controls preload="none"><source src="track17.mp3"></audio></div>
+        <div class="card"><span class="title">17. Odimaga - Aavesham</span><audio controls preload="none"><source src="track18.mp3"></audio></div>
+        <div class="card"><span class="title">18. Powerhouse - Coolie</span><audio controls preload="none"><source src="track20.mp3"></audio></div>
+        <div class="card"><span class="title">19. Pushpa Pushpa - Pushpa 2</span><audio controls preload="none"><source src="track21.mp3"></audio></div>
+        <div class="card"><span class="title">20. Rise Up - Teen Titans Go</span><audio controls preload="none"><source src="track22.mp3"></audio></div>
+        <div class="card"><span class="title">21. Sapphire - Ed Sheeran</span><audio controls preload="none"><source src="track7.mp3"></audio></div>
+        <div class="card"><span class="title">22. Shaky - Sanju Rathod</span><audio controls preload="none"><source src="track23.mp3"></audio></div>
+        <div class="card"><span class="title">23. Night Begins To Shine</span><audio controls preload="none"><source src="track24.mp3"></audio></div>
+        <div class="card"><span class="title">24. Chinta Ta Ta - Rowdy Rathore</span><audio controls preload="none"><source src="track25.mp3"></audio></div>
 
-        <div class="video-card"><span class="title" style="color:red">🎬 Featured Video: Powerhouse</span><video controls preload="none" style="height:auto;"><source src="videoplayback.mp4"></video></div>
+        <div class="card"><span class="title" style="color:red">🎬 Featured Video: Powerhouse</span><video controls preload="none" style="height:auto;"><source src="videoplayback.mp4"></video></div>
         <br><center><a href="index.html">← Back to Profile</a></center>
     </div>
 
     <script>
         function reveal() {
-            document.querySelectorAll(".song-card, .video-card").forEach((c, i) => {
+            document.querySelectorAll(".card").forEach((c, i) => {
                 if (c.getBoundingClientRect().top < window.innerHeight - 50) {
                     c.style.transitionDelay = (i % 5 * 0.1) + "s";
                     c.classList.add("reveal");
