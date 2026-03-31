@@ -13,6 +13,41 @@
             padding: 20px;
             text-align: center;
             overflow-x: hidden;
+            position: relative;
+        }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .status-bar {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 5px 15px;
+            border-radius: 50px;
+            margin-bottom: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #00FF00;
+            border-radius: 50%;
+            margin-right: 8px;
+            box-shadow: 0 0 0 rgba(0, 255, 0, 0.4);
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
         }
         .container {
             background: rgba(255, 255, 255, 0.25);
@@ -28,8 +63,6 @@
             border-top: 12px solid rgba(0, 204, 255, 0.8);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
         }
-
-        /* Way 5: Skeleton Loading State */
         .song-card, .video-card {
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(5px);
@@ -44,12 +77,10 @@
             transform: translateY(80px);
             will-change: transform, opacity;
         }
-
         .song-card.reveal, .video-card.reveal {
             opacity: 1;
             transform: translateY(0);
         }
-
         @keyframes rotateGlow {
             0% { border-color: #4285F4; box-shadow: 0 0 15px #4285F4; }
             25% { border-color: #DB4437; box-shadow: 0 0 15px #DB4437; }
@@ -57,7 +88,6 @@
             75% { border-color: #0F9D58; box-shadow: 0 0 15px #0F9D58; }
             100% { border-color: #4285F4; box-shadow: 0 0 15px #4285F4; }
         }
-
         .song-card:hover, .video-card:hover {
             transform: translateY(-15px) scale(1.04) !important;
             background: rgba(255, 255, 255, 0.9);
@@ -65,8 +95,6 @@
             animation: rotateGlow 3s linear infinite;
             border-width: 5px;
         }
-
-        /* Way 3: CSS Audio Visualizer Bars */
         .visualizer {
             display: none;
             justify-content: center;
@@ -86,8 +114,6 @@
         .bar:nth-child(3) { animation-delay: 0.2s; background: #F4B400; }
         .bar:nth-child(4) { animation-delay: 0.3s; background: #0F9D58; }
         @keyframes bounce { 10% { height: 20%; } 100% { height: 100%; } }
-
-        /* Way 4: Now Playing Notification */
         #now-playing {
             position: fixed;
             bottom: -100px;
@@ -105,7 +131,6 @@
             border: 2px solid #00FFFF;
         }
         #now-playing.active { bottom: 30px; }
-
         .video-card video { width: 100%; border-radius: 8px; margin-top: 5px; }
         .song-title { font-weight: bold; font-size: 0.95em; color: #1a1a1a; display: block; margin-bottom: 10px; }
         audio { width: 100%; height: 35px; }
@@ -115,6 +140,13 @@
     </style>
 </head>
 <body>
+
+    <div id="particles-js"></div>
+
+    <div class="status-bar">
+        <div class="pulse-dot"></div>
+        <span>SYSTEM ONLINE | SAGNIK STATION</span>
+    </div>
 
     <h1 style="color: #333;">🎵 Calm Your Mind</h1>
 
@@ -160,7 +192,26 @@
         <center><a href="index.html">← Back to Profile</a></center>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": false },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": { "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 } }
+            },
+            "retina_detect": true
+        });
+
         function reveal() {
             var reveals = document.querySelectorAll(".song-card, .video-card");
             for (var i = 0; i < reveals.length; i++) {
@@ -172,6 +223,15 @@
             }
         }
 
+        function updateToast(e) {
+            var toast = document.getElementById('now-playing');
+            var trackName = document.getElementById('track-name');
+            var card = e.target.closest('.song-card, .video-card');
+            var title = card.querySelector('.song-title').innerText;
+            trackName.innerText = title;
+            toast.classList.add('active');
+        }
+
         document.addEventListener('play', function(e){
             var allPlayers = document.querySelectorAll('audio, video');
             for(var i = 0; i < allPlayers.length; i++){
@@ -179,18 +239,21 @@
                     allPlayers[i].pause();
                 }
             }
-            
-            var toast = document.getElementById('now-playing');
-            var trackName = document.getElementById('track-name');
-            var card = e.target.closest('.song-card, .video-card');
-            var title = card.querySelector('.song-title').innerText;
-            
-            trackName.innerText = title;
-            toast.classList.add('active');
+            updateToast(e);
         }, true);
 
         document.addEventListener('pause', function(e){
-            document.getElementById('now-playing').classList.remove('active');
+            var allPlayers = document.querySelectorAll('audio, video');
+            var anyPlaying = false;
+            for(var i = 0; i < allPlayers.length; i++){
+                if(!allPlayers[i].paused) {
+                    anyPlaying = true;
+                    break;
+                }
+            }
+            if(!anyPlaying) {
+                document.getElementById('now-playing').classList.remove('active');
+            }
         }, true);
 
         window.addEventListener("scroll", reveal);
