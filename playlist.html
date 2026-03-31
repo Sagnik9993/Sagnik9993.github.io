@@ -8,258 +8,159 @@
     <style>
         body {
             background-color: #00FFFF;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
             margin: 0;
             padding: 20px;
             text-align: center;
-            overflow-x: hidden;
-            position: relative;
-        }
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
         }
         .status-bar {
             display: inline-flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            padding: 5px 15px;
+            background: #ffffff;
+            padding: 8px 20px;
             border-radius: 50px;
-            margin-bottom: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            font-size: 0.8em;
-            font-weight: bold;
+            margin-bottom: 20px;
+            border: 2px solid #1a1a1a;
+            font-size: 0.85em;
+            font-weight: 800;
         }
         .pulse-dot {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             background-color: #00FF00;
             border-radius: 50%;
-            margin-right: 8px;
-            box-shadow: 0 0 0 rgba(0, 255, 0, 0.4);
+            margin-right: 10px;
             animation: pulse 1.5s infinite;
         }
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+            70% { box-shadow: 0 0 0 6px rgba(0, 255, 0, 0); }
             100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
         }
         .container {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            background: #ffffff;
             padding: 25px;
-            border-radius: 20px;
+            border-radius: 25px;
             display: inline-block;
             text-align: left;
             width: 95%;
             max-width: 600px;
-            border-left: 12px solid rgba(255, 71, 71, 0.8);
-            border-top: 12px solid rgba(0, 204, 255, 0.8);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            border-left: 12px solid #FF4747;
+            border-top: 12px solid #00CCFF;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         .song-card, .video-card {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            margin-bottom: 25px;
-            padding: 12px;
-            border-radius: 12px;
-            border: 4px solid rgba(255, 255, 255, 0.5);
-            transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1), opacity 1.2s ease, border 0.4s ease;
-            position: relative;
+            background: #f4f4f4;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 15px;
+            border: 2px solid #ddd;
+            transition: transform 0.3s ease;
             opacity: 0;
-            transform: translateY(80px);
-            will-change: transform, opacity;
+            transform: translateY(20px);
         }
         .song-card.reveal, .video-card.reveal {
             opacity: 1;
             transform: translateY(0);
         }
-        @keyframes rotateGlow {
-            0% { border-color: #4285F4; box-shadow: 0 0 15px #4285F4; }
-            25% { border-color: #DB4437; box-shadow: 0 0 15px #DB4437; }
-            50% { border-color: #F4B400; box-shadow: 0 0 15px #F4B400; }
-            75% { border-color: #0F9D58; box-shadow: 0 0 15px #0F9D58; }
-            100% { border-color: #4285F4; box-shadow: 0 0 15px #4285F4; }
+        .song-card:hover {
+            transform: translateY(-5px);
+            border-color: #4285F4;
+            background: #ffffff;
         }
-        .song-card:hover, .video-card:hover {
-            transform: translateY(-15px) scale(1.04) !important;
-            background: rgba(255, 255, 255, 0.9);
-            z-index: 10;
-            animation: rotateGlow 3s linear infinite;
-            border-width: 5px;
-        }
-        .visualizer {
-            display: none;
-            justify-content: center;
-            align-items: flex-end;
-            height: 20px;
-            gap: 2px;
-            margin-top: 10px;
-        }
-        .song-card:hover .visualizer { display: flex; }
-        .bar {
-            width: 4px;
-            height: 100%;
-            background: #4285F4;
-            animation: bounce 0.5s ease-in-out infinite alternate;
-        }
-        .bar:nth-child(2) { animation-delay: 0.1s; background: #DB4437; }
-        .bar:nth-child(3) { animation-delay: 0.2s; background: #F4B400; }
-        .bar:nth-child(4) { animation-delay: 0.3s; background: #0F9D58; }
-        @keyframes bounce { 10% { height: 20%; } 100% { height: 100%; } }
         #now-playing {
             position: fixed;
             bottom: -100px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
+            background: #1a1a1a;
+            color: #ffffff;
             padding: 12px 25px;
             border-radius: 50px;
             font-size: 0.9em;
             font-weight: bold;
             z-index: 999;
-            transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            backdrop-filter: blur(10px);
-            border: 2px solid #00FFFF;
+            transition: bottom 0.4s ease;
+            border: 1px solid #00FFFF;
         }
-        #now-playing.active { bottom: 30px; }
-        .video-card video { width: 100%; border-radius: 8px; margin-top: 5px; }
-        .song-title { font-weight: bold; font-size: 0.95em; color: #1a1a1a; display: block; margin-bottom: 10px; }
-        audio { width: 100%; height: 35px; }
-        .footer-text { font-size: 0.75em; color: #333; margin-top: 20px; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; text-align: center; }
-        .gemini-link { color: #0056b3; font-weight: bold; font-style: italic; text-decoration: none; }
-        center a { font-weight:bold; color: #00008b; text-decoration:none; border-bottom: 2px solid #00008b; }
+        #now-playing.active { bottom: 25px; }
+        .song-title { font-weight: 800; color: #1a1a1a; display: block; margin-bottom: 8px; }
+        audio, video { width: 100%; border-radius: 10px; }
+        .footer-text { font-size: 0.75em; color: #333; margin-top: 20px; text-align: center; }
+        center a { font-weight: 900; color: #0000FF; text-decoration: none; border-bottom: 2px solid #0000FF; }
     </style>
 </head>
 <body>
 
-    <div id="particles-js"></div>
-
     <div class="status-bar">
         <div class="pulse-dot"></div>
-        <span>SYSTEM ONLINE | SAGNIK STATION</span>
+        <span>SYSTEM OPTIMIZED | SAGNIK STATION</span>
     </div>
 
-    <h1 style="color: #333;">🎵 Calm Your Mind</h1>
+    <h1>🎵 Calm Your Mind</h1>
 
-    <div id="now-playing">Now Playing: <span id="track-name">None</span></div>
+    <div id="now-playing">Now Playing: <span id="track-name" style="color: #00FFFF;">None</span></div>
 
     <div class="container">
-        <div class="song-card"><span class="song-title">1. ATLXS - Passo Bem Solto (Super Slowed)</span><audio controls preload="none"><source src="track4.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">2. Illuminati - Aavesham (Original Version)</span><audio controls preload="none"><source src="track11.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">3. Aayi Nai - Stree 2</span><audio controls preload="none"><source src="track2.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">4. Armadham - Aavesham</span><audio controls preload="none"><source src="track3.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">5. Believer - Imagine Dragons</span><audio controls preload="none"><source src="track12.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">6. Bones - Imagine Dragons</span><audio controls preload="none"><source src="track13.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">7. Lutt Putt Gaya - Dunki</span><audio controls preload="none"><source src="track5.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">8. O Maahi - Dunki</span><audio controls preload="none"><source src="track6.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">9. Fa9la - Rehman Dakait</span><audio controls preload="none"><source src="track8.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">10. Hukum - Jailer</span><audio controls preload="none"><source src="track9.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">11. Illuminati (Hindi Dubbed Version)</span><audio controls preload="none"><source src="track10.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">12. Kaathu Mela - Paal Dabba</span><audio controls preload="none"><source src="track19.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">13. Main Nikla Gaddi Leke - Gadar 2</span><audio controls preload="none"><source src="track14.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">14. Mera Wala Dance - Simmba</span><audio controls preload="none"><source src="track15.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">15. Mobsta - Coolie</span><audio controls preload="none"><source src="track16.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">16. Naacho Naacho - RRR</span><audio controls preload="none"><source src="track17.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">17. Odimaga - Aavesham</span><audio controls preload="none"><source src="track18.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">18. Powerhouse - Coolie</span><audio controls preload="none"><source src="track20.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">19. Pushpa Pushpa - Pushpa 2</span><audio controls preload="none"><source src="track21.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">20. Rise Up - Teen Titans Go</span><audio controls preload="none"><source src="track22.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">21. Sapphire - Ed Sheeran</span><audio controls preload="none"><source src="track7.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">22. Shaky - Sanju Rathod</span><audio controls preload="none"><source src="track23.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">23. Night Begins To Shine - Teen Titans Go</span><audio controls preload="none"><source src="track24.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
-        <div class="song-card"><span class="song-title">24. Chinta Ta Ta Chita Chita - Rowdy Rathore</span><audio controls preload="none"><source src="track25.mp3" type="audio/mpeg"></audio><div class="visualizer"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div></div>
+        <div class="song-card"><span class="song-title">1. ATLXS - Passo Bem Solto</span><audio controls preload="none"><source src="track4.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">2. Illuminati - Aavesham</span><audio controls preload="none"><source src="track11.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">3. Aayi Nai - Stree 2</span><audio controls preload="none"><source src="track2.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">4. Armadham - Aavesham</span><audio controls preload="none"><source src="track3.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">5. Believer - Imagine Dragons</span><audio controls preload="none"><source src="track12.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">6. Bones - Imagine Dragons</span><audio controls preload="none"><source src="track13.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">7. Lutt Putt Gaya - Dunki</span><audio controls preload="none"><source src="track5.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">8. O Maahi - Dunki</span><audio controls preload="none"><source src="track6.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">9. Fa9la - Rehman Dakait</span><audio controls preload="none"><source src="track8.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">10. Hukum - Jailer</span><audio controls preload="none"><source src="track9.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">11. Illuminati (Hindi)</span><audio controls preload="none"><source src="track10.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">12. Kaathu Mela - Paal Dabba</span><audio controls preload="none"><source src="track19.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">13. Main Nikla Gaddi Leke</span><audio controls preload="none"><source src="track14.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">14. Mera Wala Dance</span><audio controls preload="none"><source src="track15.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">15. Mobsta - Coolie</span><audio controls preload="none"><source src="track16.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">16. Naacho Naacho - RRR</span><audio controls preload="none"><source src="track17.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">17. Odimaga - Aavesham</span><audio controls preload="none"><source src="track18.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">18. Powerhouse - Coolie</span><audio controls preload="none"><source src="track20.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">19. Pushpa Pushpa - Pushpa 2</span><audio controls preload="none"><source src="track21.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">20. Rise Up - Titans</span><audio controls preload="none"><source src="track22.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">21. Sapphire - Ed Sheeran</span><audio controls preload="none"><source src="track7.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">22. Shaky - Sanju Rathod</span><audio controls preload="none"><source src="track23.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">23. Night Begins To Shine</span><audio controls preload="none"><source src="track24.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">24. Chinta Ta Ta</span><audio controls preload="none"><source src="track25.mp3" type="audio/mpeg"></audio></div>
 
         <div class="video-card">
-            <span class="song-title" style="color: #FF4747;">🎬 Featured Video: Powerhouse (From Coolie)</span>
+            <span class="song-title" style="color: #FF4747;">🎬 Featured Video</span>
             <video controls preload="none"><source src="videoplayback.mp4" type="video/mp4"></video>
         </div>
 
         <div class="footer-text">
-            <p>Non-commercial student project. Credits to original labels.</p>
-            <p>Rectified and <a href="https://gemini.google.com" class="gemini-link" target="_blank">Powered by Google Gemini 3 Flash</a></p>
+            <p>Rectified for Hardware Stability | Powered by Google Gemini</p>
         </div>
         
-        <br>    
-        <center><a href="index.html">← Back to Profile</a></center>
+        <br><center><a href="index.html">← Back to Profile</a></center>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#ffffff" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.5, "random": false },
-                "size": { "value": 3, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
-                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                "modes": { "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 } }
-            },
-            "retina_detect": true
-        });
-
         function reveal() {
             var reveals = document.querySelectorAll(".song-card, .video-card");
             for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 50) {
-                    reveals[i].classList.add("reveal");
-                }
+                if (elementTop < window.innerHeight - 50) reveals[i].classList.add("reveal");
             }
         }
-
-        function updateToast(e) {
-            var toast = document.getElementById('now-playing');
-            var trackName = document.getElementById('track-name');
-            var card = e.target.closest('.song-card, .video-card');
-            var title = card.querySelector('.song-title').innerText;
-            trackName.innerText = title;
-            toast.classList.add('active');
-        }
-
         document.addEventListener('play', function(e){
             var allPlayers = document.querySelectorAll('audio, video');
             for(var i = 0; i < allPlayers.length; i++){
-                if(allPlayers[i] != e.target){
-                    allPlayers[i].pause();
-                }
+                if(allPlayers[i] != e.target) allPlayers[i].pause();
             }
-            updateToast(e);
+            document.getElementById('track-name').innerText = e.target.closest('.song-card, .video-card').querySelector('.song-title').innerText;
+            document.getElementById('now-playing').classList.add('active');
         }, true);
-
         document.addEventListener('pause', function(e){
-            var allPlayers = document.querySelectorAll('audio, video');
-            var anyPlaying = false;
-            for(var i = 0; i < allPlayers.length; i++){
-                if(!allPlayers[i].paused) {
-                    anyPlaying = true;
-                    break;
-                }
-            }
-            if(!anyPlaying) {
-                document.getElementById('now-playing').classList.remove('active');
-            }
+            document.getElementById('now-playing').classList.remove('active');
         }, true);
-
         window.addEventListener("scroll", reveal);
         window.onload = reveal;
         setTimeout(reveal, 500);
     </script>
-
 </body>
 </html>
