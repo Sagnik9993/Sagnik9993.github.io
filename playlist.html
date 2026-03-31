@@ -3,29 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sagnik's Station | AI Cards</title>
+    <title>Sagnik's AI Station</title>
     <style>
         :root {
             --ai-blue: #4285F4; --ai-purple: #9b51e0; --ai-red: #ff4747; --ai-yellow: #f4b400;
         }
         body { margin: 0; padding: 20px; text-align: center; font-family: 'Segoe UI', sans-serif; background: #00FFFF; }
         
-        /* THE AI RING INSIDE THE CARD */
+        /* THE AI RING - ONLY ROTATES ON HOVER */
         .ai-ring-mini {
-            width: 40px; height: 40px; border-radius: 50%;
+            width: 35px; height: 35px; border-radius: 50%;
             margin-bottom: 10px; border: 4px solid transparent;
             background: linear-gradient(#f9f9f9, #f9f9f9) padding-box, 
                         conic-gradient(var(--ai-blue), var(--ai-purple), var(--ai-red), var(--ai-yellow), var(--ai-blue)) border-box;
-            animation: rotate-ring 3s linear infinite;
+            opacity: 0; transform: scale(0.5); transition: 0.4s ease;
         }
-        @keyframes rotate-ring { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
-
-        .status-bar { 
-            display: inline-flex; align-items: center; background: white; padding: 8px 20px; 
-            border-radius: 50px; border: 2px solid #1a1a1a; font-size: 0.9em; font-weight: 800; margin-bottom: 25px;
-        }
-        .pulse { width: 10px; height: 10px; background: #0f0; border-radius: 50%; margin-right: 10px; animation: p 1.5s infinite; }
-        @keyframes p { 0% {box-shadow: 0 0 0 0 #0f0;} 70% {box-shadow: 0 0 0 8px #0f00;} }
 
         .container { 
             background: white; padding: 25px; border-radius: 25px; display: inline-block; 
@@ -34,15 +26,22 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        /* CARD STYLE WITH AI RING */
         .card {
             background: #f9f9f9; margin-bottom: 20px; padding: 20px; border-radius: 20px;
-            border: 2px solid #eee; transition: all 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+            border: 2px solid #eee; transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
             opacity: 0; transform: translateY(40px);
             display: flex; flex-direction: column; align-items: flex-start;
         }
         .card.is-visible { opacity: 1; transform: translateY(0); }
-        .card:hover { border-color: var(--ai-blue); transform: translateX(8px); background: #fff; }
+
+        /* HOVER EFFECT */
+        .card:hover { border-color: var(--ai-blue); transform: translateX(10px); background: #fff; }
+        .card:hover .ai-ring-mini { 
+            opacity: 1; transform: scale(1); 
+            animation: rotate-ring 2s linear infinite; 
+        }
+
+        @keyframes rotate-ring { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
 
         #np { 
             position: fixed; bottom: -80px; left: 50%; transform: translateX(-50%);
@@ -51,72 +50,60 @@
         }
         #np.active { bottom: 25px; }
 
-        .title { font-weight: 800; font-size: 1em; display: block; margin-bottom: 12px; color: #1a1a1a; }
+        .title { font-weight: 800; font-size: 1.1em; display: block; margin-bottom: 12px; color: #1a1a1a; }
         audio, video { width: 100%; border-radius: 12px; height: 35px; }
         center a { font-weight: 900; color: blue; text-decoration: none; padding: 10px; display: inline-block; }
     </style>
 </head>
 <body>
 
-    <div class="status-bar">
-        <div class="pulse"></div>
-        <span>AI INTEGRATED | WHISKEY LAKE i3</span>
-    </div>
-
     <h1>🎵 Calm Your Mind</h1>
     <div id="np">Playing: <span id="tn" style="color:#0ff">None</span></div>
 
     <div class="container">
-        <div class="card">
-            <div class="ai-ring-mini"></div>
-            <span class="title">1. ATLXS - Passo Bem Solto</span>
-            <audio controls preload="none"><source src="track4.mp3"></audio>
-        </div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">1. ATLXS - Passo Bem Solto</span><audio controls preload="none"><source src="track4.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">2. Illuminati - Aavesham (Original)</span><audio controls preload="none"><source src="track11.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">3. Aayi Nai - Stree 2</span><audio controls preload="none"><source src="track2.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">4. Armadham - Aavesham</span><audio controls preload="none"><source src="track3.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">5. Believer - Imagine Dragons</span><audio controls preload="none"><source src="track12.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">6. Bones - Imagine Dragons</span><audio controls preload="none"><source src="track13.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">7. Lutt Putt Gaya - Dunki</span><audio controls preload="none"><source src="track5.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">8. O Maahi - Dunki</span><audio controls preload="none"><source src="track6.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">9. Fa9la - Rehman Dakait</span><audio controls preload="none"><source src="track8.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">10. Hukum - Jailer</span><audio controls preload="none"><source src="track9.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">11. Illuminati (Hindi Dubbed)</span><audio controls preload="none"><source src="track10.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">12. Kaathu Mela - Paal Dabba</span><audio controls preload="none"><source src="track19.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">13. Main Nikla Gaddi Leke</span><audio controls preload="none"><source src="track14.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">14. Mera Wala Dance - Simmba</span><audio controls preload="none"><source src="track15.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">15. Mobsta - Coolie</span><audio controls preload="none"><source src="track16.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">16. Naacho Naacho - RRR</span><audio controls preload="none"><source src="track17.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">17. Odimaga - Aavesham</span><audio controls preload="none"><source src="track18.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">18. Powerhouse - Coolie</span><audio controls preload="none"><source src="track20.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">19. Pushpa Pushpa - Pushpa 2</span><audio controls preload="none"><source src="track21.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">20. Rise Up - Teen Titans Go</span><audio controls preload="none"><source src="track22.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">21. Sapphire - Ed Sheeran</span><audio controls preload="none"><source src="track7.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">22. Shaky - Sanju Rathod</span><audio controls preload="none"><source src="track23.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">23. Night Begins To Shine</span><audio controls preload="none"><source src="track24.mp3"></audio></div>
+        <div class="card"><div class="ai-ring-mini"></div><span class="title">24. Chinta Ta Ta</span><audio controls preload="none"><source src="track25.mp3"></audio></div>
 
-        <div class="card">
-            <div class="ai-ring-mini"></div>
-            <span class="title">2. Illuminati - Aavesham (Original)</span>
-            <audio controls preload="none"><source src="track11.mp3"></audio>
-        </div>
-
-        <div class="card">
-            <div class="ai-ring-mini"></div>
-            <span class="title">3. Aayi Nai - Stree 2</span>
-            <audio controls preload="none"><source src="track2.mp3"></audio>
-        </div>
-
-        <div class="card">
-            <div class="ai-ring-mini"></div>
-            <span class="title">24. Chinta Ta Ta</span>
-            <audio controls preload="none"><source src="track25.mp3"></audio>
-        </div>
-
-        <div class="card">
-            <div class="ai-ring-mini"></div>
-            <span class="title" style="color:red">🎬 Featured Video</span>
-            <video controls preload="none" style="height:auto;"><source src="videoplayback.mp4"></video>
-        </div>
-
+        <div class="card"><div class="ai-ring-mini"></div><span class="title" style="color:red">🎬 Featured Video</span><video controls preload="none" style="height:auto;"><source src="videoplayback.mp4"></video></div>
+        
         <br><center><a href="index.html">← Back to Profile</a></center>
     </div>
 
     <script>
-        // 1-BY-1 REVEAL
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('is-visible');
             });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.card').forEach(card => observer.observe(card));
 
-        // PLAYER LOGIC
         document.addEventListener('play', e => {
             document.querySelectorAll('audio, video').forEach(p => { if(p != e.target) p.pause(); });
             document.getElementById('tn').innerText = e.target.closest('.card').querySelector('.title').innerText;
             document.getElementById('np').classList.add('active');
         }, true);
-        
         document.addEventListener('pause', () => {
             let playing = Array.from(document.querySelectorAll('audio, video')).some(p => !p.paused);
             if(!playing) document.getElementById('np').classList.remove('active');
