@@ -106,3 +106,74 @@
             from { transform: rotate(0deg); }
             to   { transform: rotate(360deg); }
         }
+
+        /* Phase offsets so cards show different dominant colors at the same time.
+           Pattern repeats every 4 cards to circulate red → blue → green → yellow across cards.
+           Adjust delays to control how "staggered" the colors appear. */
+        .container .song-card:nth-child(4n+1)::before { animation-delay: 0s; }
+        .container .song-card:nth-child(4n+2)::before { animation-delay: -1.5s; }
+        .container .song-card:nth-child(4n+3)::before { animation-delay: -3s; }
+        .container .song-card:nth-child(4n+4)::before { animation-delay: -4.5s; }
+
+        /* Slightly stronger ring on hover for emphasis (keeps original hover behavior) */
+        .song-card:hover::before {
+            filter: blur(6px);
+            opacity: 1;
+        }
+
+        /* Ensure video-card does not get the rotating ring (keeps original look) */
+        .video-card::before { display: none; }
+
+        /* Responsive tweaks */
+        @media (max-width: 520px) {
+            .container { width: 100%; padding: 18px; border-radius: 14px; }
+            .song-card::before { inset: -5px; filter: blur(7px); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 style="color: #333;">🎵 Calm Your Mind</h1>
+
+    <div class="container">
+        <div class="song-card"><span class="song-title">1. ATLXS - Passo Bem Solto (Super Slowed)</span><audio controls preload="none"><source src="track4.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">2. Illuminati - Aavesham (Original Version)</span><audio controls preload="none"><source src="track11.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">3. Aayi Nai - Stree 2</span><audio controls preload="none"><source src="track2.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">4. Armadham - Aavesham</span><audio controls preload="none"><source src="track3.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">5. Believer - Imagine Dragons</span><audio controls preload="none"><source src="track12.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">6. Bones - Imagine Dragons</span><audio controls preload="none"><source src="track13.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">7. Lutt Putt Gaya - Dunki</span><audio controls preload="none"><source src="track5.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">8. O Maahi - Dunki</span><audio controls preload="none"><source src="track6.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">9. Fa9la - Rehman Dakait</span><audio controls preload="none"><source src="track8.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">10. Hukum - Jailer</span><audio controls preload="none"><source src="track9.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">11. Illuminati (Hindi Dubbed Version)</span><audio controls preload="none"><source src="track10.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">12. Kaathu Mela - Paal Dabba</span><audio controls preload="none"><source src="track19.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">13. Main Nikla Gaddi Leke - Gadar 2</span><audio controls preload="none"><source src="track14.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">14. Mera Wala Dance - Simmba</span><audio controls preload="none"><source src="track15.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">15. Mobsta - Coolie</span><audio controls preload="none"><source src="track16.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">16. Naacho Naacho - RRR</span><audio controls preload="none"><source src="track17.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">17. Odimaga - Aavesham</span><audio controls preload="none"><source src="track18.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">18. Powerhouse - Coolie</span><audio controls preload="none"><source src="track20.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">19. Pushpa Pushpa - Pushpa 2</span><audio controls preload="none"><source src="track21.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">20. Rise Up - Teen Titans Go</span><audio controls preload="none"><source src="track22.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">21. Sapphire - Ed Sheeran</span><audio controls preload="none"><source src="track7.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">22. Shaky - Sanju Rathod</span><audio controls preload="none"><source src="track23.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">23. Night Begins To Shine - Teen Titans Go</span><audio controls preload="none"><source src="track24.mp3" type="audio/mpeg"></audio></div>
+        <div class="song-card"><span class="song-title">24. Chinta Ta Ta Chita Chita - Rowdy Rathore</span><audio controls preload="none"><source src="track25.mp3" type="audio/mpeg"></audio></div>
+
+        <div class="video-card">
+            <span class="song-title" style="color: #FF4747;">🎬 Featured Video: Powerhouse (From Coolie)</span>
+            <video controls><source src="videoplayback.mp4" type="video/mp4"></video>
+        </div>
+
+        <div class="footer-text">
+            <p>Non-commercial student project. Credits to original labels.</p>
+            <p>Rectified and <a href="https://gemini.google.com" class="gemini-link" target="_blank">Powered by Google Gemini 3 Flash</a></p>
+        </div>
+
+        <br>
+        <center><a href="index.html">← Back to Profile</a></center>
+    </div>
+
+</body>
+</html>
