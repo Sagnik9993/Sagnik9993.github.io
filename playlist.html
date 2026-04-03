@@ -6,62 +6,123 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>Sagnik's Relaxing Library</title>
   <style>
-    :root{
-      --bg-cyan:#00FFFF;
-      --card-bg:rgba(255,255,255,0.20);
-      --card-inner:rgba(255,255,255,0.96);
-      --text:#111;
-      --ms-red:#D83B01;
-      --ms-blue:#0078D4;
-      --ms-green:#107C10;
-      --ms-yellow:#FFB900;
-      --ring-thickness:2px;
-      --ring-blur:4px;
-      --anim-duration:5s;
+    :root {
+      --bg-cyan: #00FFFF;
+      --card-bg: rgba(255, 255, 255, 0.20);
+      --card-inner: rgba(255, 255, 255, 0.98);
+      --text: #111;
+      --goog-blue: #4285F4;
+      --goog-red: #EA4335;
+      --goog-yellow: #FBBC05;
+      --goog-green: #34A853;
+      --ring-thickness: 4px;
     }
-    html,body{height:100%;margin:0;padding:0;background:var(--bg-cyan);font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;text-align:center;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
-    h1{color:#333;margin:18px 0 12px 0;font-size:1.4rem;}
-    .container{background:var(--card-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:20px;border-radius:16px;display:inline-block;text-align:left;width:94%;max-width:680px;border-left:10px solid rgba(255,71,71,0.8);border-top:10px solid rgba(0,204,255,0.8);box-shadow:0 10px 30px rgba(0,0,0,0.16);margin:0 auto 28px auto;}
-    .song-card,.video-card{position:relative;margin-bottom:12px;border-radius:12px;overflow:visible;transition:transform .22s ease,box-shadow .22s ease;}
-    .song-card .inner{position:relative;z-index:2;background:var(--card-inner);border-radius:8px;padding:10px;box-shadow:0 6px 14px rgba(0,0,0,0.06);}
-    .song-card:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,0.12);}
-    .song-title{font-weight:700;font-size:.95em;color:var(--text);display:block;margin-bottom:8px;}
-    audio{width:100%;height:36px;display:block;}
-    .video-card video{width:100%;border-radius:8px;margin-top:6px;background:#000;}
-    .footer-text{font-size:.78em;color:#333;margin-top:14px;border-top:1px solid rgba(0,0,0,0.06);padding-top:12px;text-align:center;}
-    .gemini-link{color:#0056b3;font-weight:700;font-style:italic;text-decoration:none;}
-    center a{font-weight:700;color:#00008b;text-decoration:none;border-bottom:2px solid #00008b;padding-bottom:2px;}
-    .song-card{padding:calc(10px + var(--ring-thickness));background:transparent;border-radius:12px;}
-    .song-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:1;
-      border-radius:14px;
-      pointer-events:none;
-      background: linear-gradient(90deg, var(--ms-red) 0%, var(--ms-blue) 33%, var(--ms-green) 66%, var(--ms-yellow) 100%);
-      background-size: 400% 100%;
-      animation: slideColors var(--anim-duration) linear infinite;
-      animation-play-state: paused;
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: var(--bg-cyan);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1 { color: #333; margin: 18px 0 12px 0; font-size: 1.4rem; }
+
+    .container {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 20px;
+      border-radius: 16px;
+      display: inline-block;
+      text-align: left;
+      width: 94%;
+      max-width: 680px;
+      border-left: 10px solid rgba(255, 71, 71, 0.8);
+      border-top: 10px solid rgba(0, 204, 255, 0.8);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+      margin: 0 auto 28px auto;
+    }
+
+    .song-card {
+      position: relative;
+      margin-bottom: 16px;
+      border-radius: 14px;
+      overflow: hidden;
       padding: var(--ring-thickness);
-      box-sizing: border-box;
-      filter: blur(var(--ring-blur));
+      background: transparent;
+      transition: transform 0.3s ease;
+    }
+
+    .song-card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(
+        var(--goog-blue), 
+        var(--goog-red), 
+        var(--goog-yellow), 
+        var(--goog-green), 
+        var(--goog-blue)
+      );
+      animation: rotateColors 3s linear infinite;
       opacity: 0;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: destination-out;
-      mask-composite: exclude;
+      z-index: 1;
+      transition: opacity 0.3s ease;
     }
-    @keyframes slideColors{
-      0%{background-position:0% 50%}
-      100%{background-position:100% 50%}
+
+    .song-card:hover {
+      transform: translateY(-5px);
     }
-    .container .song-card:nth-child(4n+1)::before{animation-delay:0s}
-    .container .song-card:nth-child(4n+2)::before{animation-delay:-1.25s}
-    .container .song-card:nth-child(4n+3)::before{animation-delay:-2.5s}
-    .container .song-card:nth-child(4n+4)::before{animation-delay:-3.75s}
-    .song-card:hover::before{filter:blur(calc(var(--ring-blur) - 1px));transform:scale(1.01);opacity:1;animation-play-state:running}
-    .video-card::before{display:none}
-    @media (max-width:520px){.container{width:calc(100% - 28px);padding:16px;border-radius:12px}.song-card::before{padding:calc(var(--ring-thickness));filter:blur(4px)}}
+
+    .song-card:hover::before {
+      opacity: 1;
+    }
+
+    @keyframes rotateColors {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .song-card .inner {
+      position: relative;
+      z-index: 2;
+      background: var(--card-inner);
+      border-radius: 10px;
+      padding: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .song-title {
+      font-weight: 700;
+      font-size: .95em;
+      color: var(--text);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    audio { width: 100%; height: 36px; display: block; }
+
+    .video-card video { width: 100%; border-radius: 8px; margin-top: 6px; background: #000; }
+
+    .footer-text {
+      font-size: .78em;
+      color: #333;
+      margin-top: 14px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      padding-top: 12px;
+      text-align: center;
+    }
+
+    .gemini-link { color: #0056b3; font-weight: 700; font-style: italic; text-decoration: none; }
+    center a { font-weight: 700; color: #00008b; text-decoration: none; border-bottom: 2px solid #00008b; padding-bottom: 2px; }
+
+    @media (max-width:520px) { .container { width: calc(100% - 28px); padding: 16px; } }
   </style>
 </head>
 <body>
@@ -91,10 +152,12 @@
     <div class="song-card"><div class="inner"><span class="song-title">22. Shaky - Sanju Rathod</span><audio controls preload="none"><source src="track23.mp3" type="audio/mpeg"></audio></div></div>
     <div class="song-card"><div class="inner"><span class="song-title">23. Night Begins To Shine - Teen Titans Go</span><audio controls preload="none"><source src="track24.mp3" type="audio/mpeg"></audio></div></div>
     <div class="song-card"><div class="inner"><span class="song-title">24. Chinta Ta Ta Chita Chita - Rowdy Rathore</span><audio controls preload="none"><source src="track25.mp3" type="audio/mpeg"></audio></div></div>
+
     <div class="video-card">
-      <span class="song-title" style="color:var(--ms-red);">🎬 Featured Video: Powerhouse (From Coolie)</span>
+      <span class="song-title" style="color:var(--goog-red);">🎬 Featured Video: Powerhouse (From Coolie)</span>
       <video controls><source src="videoplayback.mp4" type="video/mp4"></video>
     </div>
+
     <div class="footer-text">
       <p>Non-commercial student project. Credits to original labels.</p>
       <p>Rectified and <a href="https://gemini.google.com" class="gemini-link" target="_blank" rel="noopener">Powered by Google Gemini 3 Flash</a></p>
