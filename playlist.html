@@ -15,7 +15,9 @@
       --ms-blue:#0078D4;
       --ms-green:#107C10;
       --ms-yellow:#FFB900;
-      --ring-thickness:8px;
+      --ring-thickness:3px;
+      --ring-blur:6px;
+      --anim-duration:5.5s;
     }
     html,body{height:100%;margin:0;padding:0;background:var(--bg-cyan);font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;text-align:center;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
     h1{color:#333;margin:18px 0 12px 0;font-size:1.4rem;}
@@ -30,15 +32,37 @@
     .gemini-link{color:#0056b3;font-weight:700;font-style:italic;text-decoration:none;}
     center a{font-weight:700;color:#00008b;text-decoration:none;border-bottom:2px solid #00008b;padding-bottom:2px;}
     .song-card{padding:calc(12px + var(--ring-thickness));background:transparent;border-radius:14px;}
-    .song-card::before{content:"";position:absolute;inset:0;z-index:1;border-radius:16px;pointer-events:none;background:linear-gradient(90deg,var(--ms-red),var(--ms-blue),var(--ms-green),var(--ms-yellow),var(--ms-red));background-size:300% 100%;animation:slideColors 5.5s linear infinite;padding:var(--ring-thickness);box-sizing:border-box;filter:blur(6px);opacity:1;}
-    @keyframes slideColors{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    .song-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:1;
+      border-radius:16px;
+      pointer-events:none;
+      background: linear-gradient(90deg, var(--ms-red) 0%, var(--ms-blue) 33%, var(--ms-green) 66%, var(--ms-yellow) 100%);
+      background-size: 300% 100%;
+      animation: slideColors var(--anim-duration) linear infinite;
+      animation-play-state: paused;
+      padding: var(--ring-thickness);
+      box-sizing: border-box;
+      filter: blur(var(--ring-blur));
+      opacity: 0;
+      transition: opacity .22s ease, filter .18s ease, transform .18s ease;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+    }
+    @keyframes slideColors{
+      0%{background-position:0% 50%}
+      100%{background-position:100% 50%}
+    }
     .container .song-card:nth-child(4n+1)::before{animation-delay:0s}
     .container .song-card:nth-child(4n+2)::before{animation-delay:-1.375s}
     .container .song-card:nth-child(4n+3)::before{animation-delay:-2.75s}
     .container .song-card:nth-child(4n+4)::before{animation-delay:-4.125s}
-    .song-card:hover::before{filter:blur(4px);transform:scale(1.01);opacity:1}
+    .song-card:hover::before{filter:blur(calc(var(--ring-blur) - 2px));transform:scale(1.01);opacity:1;animation-play-state:running}
     .video-card::before{display:none}
-    @media (max-width:520px){.container{width:calc(100% - 28px);padding:18px;border-radius:14px}.song-card::before{padding:calc(var(--ring-thickness) - 2px);filter:blur(5px)}}
+    @media (max-width:520px){.container{width:calc(100% - 28px);padding:18px;border-radius:14px}.song-card::before{padding:calc(var(--ring-thickness) - 1px);filter:blur(5px)}}
   </style>
 </head>
 <body>
