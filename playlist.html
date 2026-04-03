@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="robots" content="noindex, nofollow"/>
     <title>Sagnik's Relaxing Library</title>
     <style>
+        /* Base layout (unchanged structure and colors you used) */
         body {
             background-color: #00FFFF;
             font-family: 'Segoe UI', sans-serif;
@@ -14,6 +15,7 @@
             text-align: center;
             background-attachment: fixed;
         }
+
         .container {
             background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(15px);
@@ -30,7 +32,12 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
         }
+
+        h1 { color: #333; margin: 0 0 12px 0; }
+
+        /* Song card base (keeps your original look but prepares for animated border) */
         .song-card, .video-card {
+            position: relative;
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
@@ -38,128 +45,64 @@
             padding: 12px;
             border-radius: 12px;
             border: 4px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+            overflow: visible;
+            z-index: 1;
         }
+
         .song-card:hover {
             transform: translateY(-8px);
             background: rgba(255, 255, 255, 0.8);
-            border-color: #FF4747;
-            box-shadow: 0 10px 20px rgba(255, 71, 71, 0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
         }
-        .song-card:nth-child(even):hover {
-            border-color: #00CCFF;
-            box-shadow: 0 10px 20px rgba(0, 204, 255, 0.3);
-        }
+
+        .song-title { font-weight: bold; font-size: 0.95em; color: #1a1a1a; display: block; margin-bottom: 10px; }
+        audio { width: 100%; height: 35px; display:block; }
+
         .video-card video {
-            width: 100%; 
+            width: 100%;
             border-radius: 8px;
             margin-top: 5px;
         }
-        .song-title { font-weight: bold; font-size: 0.95em; color: #1a1a1a; display: block; margin-bottom: 10px; }
-        audio { width: 100%; height: 35px; }
+
         .footer-text { font-size: 0.75em; color: #333; margin-top: 20px; border-top: 1px solid rgba(0,0,0,0.1); padding-top: 15px; text-align: center; }
         .gemini-link { color: #0056b3; font-weight: bold; font-style: italic; text-decoration: none; }
         center a { font-weight:bold; color: #00008b; text-decoration:none; border-bottom: 2px solid #00008b; }
 
-        /* Google AI style sound card button (added) */
-        .ai-button {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            font-size: 1em;
-            font-weight: 700;
-            color: #fff;
-            background: linear-gradient(90deg, #4285F4, #EA4335, #FBBC05, #34A853);
-            background-size: 400% 400%;
-            border: none;
-            border-radius: 999px;
-            cursor: pointer;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            animation: gradientFlow 6s linear infinite;
-        }
-        .ai-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.28);
-        }
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .ai-button::after {
+        /* ---------------------------
+           Animated multi-color "sound card" border
+           - Uses a blurred conic-gradient pseudo-element behind each card
+           - Animation rotates the gradient so colors circulate
+           - nth-child selectors offset animation phase so cards show different dominant colors
+           - Color order used: red → blue → green → yellow (circulating)
+           --------------------------- */
+
+        .song-card::before {
             content: "";
             position: absolute;
-            inset: -8px;
-            border-radius: 999px;
-            border: 2px solid rgba(66,133,244,0.18);
-            animation: pulse 1.6s infinite;
+            inset: -6px; /* makes the colored ring visible outside the card */
+            border-radius: 16px;
+            z-index: 0;
             pointer-events: none;
+            /* conic gradient with the requested color order (red, blue, green, yellow) */
+            background: conic-gradient(
+                #EA4335 0deg 90deg,   /* red */
+                #4285F4 90deg 180deg, /* blue */
+                #34A853 180deg 270deg,/* green */
+                #FBBC05 270deg 360deg  /* yellow */
+            );
+            filter: blur(8px);
+            opacity: 0.95;
+            transform: rotate(0deg);
+            transition: opacity 0.25s ease;
+            animation: rotateColors 6s linear infinite;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(1.45); opacity: 0; }
+
+        /* Keep card content above the animated ring */
+        .song-card > * { position: relative; z-index: 1; }
+
+        /* Rotation animation for the conic gradient */
+        @keyframes rotateColors {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
         }
-    </style>
-</head>
-<body>
-
-    <h1 style="color: #333;">🎵 Calm Your Mind</h1>
-
-    <!-- Google AI style sound card button placed below the header as requested -->
-    <div style="margin: 12px 0; text-align:center;">
-        <button class="ai-button" onclick="aiButtonPulse(this)">
-            🎵 Google AI Sound
-        </button>
-    </div>
-
-    <div class="container">
-        <div class="song-card"><span class="song-title">1. ATLXS - Passo Bem Solto (Super Slowed)</span><audio controls preload="none"><source src="track4.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">2. Illuminati - Aavesham (Original Version)</span><audio controls preload="none"><source src="track11.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">3. Aayi Nai - Stree 2</span><audio controls preload="none"><source src="track2.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">4. Armadham - Aavesham</span><audio controls preload="none"><source src="track3.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">5. Believer - Imagine Dragons</span><audio controls preload="none"><source src="track12.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">6. Bones - Imagine Dragons</span><audio controls preload="none"><source src="track13.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">7. Lutt Putt Gaya - Dunki</span><audio controls preload="none"><source src="track5.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">8. O Maahi - Dunki</span><audio controls preload="none"><source src="track6.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">9. Fa9la - Rehman Dakait</span><audio controls preload="none"><source src="track8.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">10. Hukum - Jailer</span><audio controls preload="none"><source src="track9.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">11. Illuminati (Hindi Dubbed Version)</span><audio controls preload="none"><source src="track10.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">12. Kaathu Mela - Paal Dabba</span><audio controls preload="none"><source src="track19.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">13. Main Nikla Gaddi Leke - Gadar 2</span><audio controls preload="none"><source src="track14.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">14. Mera Wala Dance - Simmba</span><audio controls preload="none"><source src="track15.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">15. Mobsta - Coolie</span><audio controls preload="none"><source src="track16.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">16. Naacho Naacho - RRR</span><audio controls preload="none"><source src="track17.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">17. Odimaga - Aavesham</span><audio controls preload="none"><source src="track18.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">18. Powerhouse - Coolie</span><audio controls preload="none"><source src="track20.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">19. Pushpa Pushpa - Pushpa 2</span><audio controls preload="none"><source src="track21.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">20. Rise Up - Teen Titans Go</span><audio controls preload="none"><source src="track22.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">21. Sapphire - Ed Sheeran</span><audio controls preload="none"><source src="track7.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">22. Shaky - Sanju Rathod</span><audio controls preload="none"><source src="track23.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">23. Night Begins To Shine - Teen Titans Go</span><audio controls preload="none"><source src="track24.mp3" type="audio/mpeg"></audio></div>
-        <div class="song-card"><span class="song-title">24. Chinta Ta Ta Chita Chita - Rowdy Rathore</span><audio controls preload="none"><source src="track25.mp3" type="audio/mpeg"></audio></div>
-
-        <div class="video-card">
-            <span class="song-title" style="color: #FF4747;">🎬 Featured Video: Powerhouse (From Coolie)</span>
-            <video controls><source src="videoplayback.mp4" type="video/mp4"></video>
-        </div>
-
-        <div class="footer-text">
-            <p>Non-commercial student project. Credits to original labels.</p>
-            <p>Rectified and <a href="https://gemini.google.com" class="gemini-link" target="_blank">Powered by Google Gemini 3 Flash</a></p>
-        </div>
-        
-        <br>    
-        <center><a href="index.html">← Back to Profile</a></center>
-    </div>
-
-    <script>
-        function aiButtonPulse(btn){
-            btn.style.transform = 'scale(1.03)';
-            setTimeout(()=> btn.style.transform = '', 220);
-        }
-    </script>
-</body>
-</html>
