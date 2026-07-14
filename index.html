@@ -5,37 +5,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Windows Tips & Tricks | Official</title>
     <style>
+        :root {
+            --bg-deep: #090c13;
+            --bg-mid: #121a2b;
+            --glass-fill: rgba(255, 255, 255, 0.045);
+            --glass-fill-hover: rgba(255, 255, 255, 0.065);
+            --glass-border: rgba(255, 255, 255, 0.09);
+            --glass-border-hover: rgba(79, 209, 255, 0.4);
+            --accent-blue: #0d7fe0;
+            --accent-cyan: #4fd1ff;
+            --accent-violet: #7c6ff0;
+            --text-primary: #f5f7fa;
+            --text-muted: #93a1b8;
+            --mono: 'Cascadia Code', 'Consolas', ui-monospace, monospace;
+            --sans: 'Segoe UI Variable', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            font-family: var(--sans);
+        }
+
+        html, body {
+            height: 100%;
         }
 
         body {
-            background: radial-gradient(circle at 50% 50%, #1e2638 0%, #0f131c 100%);
-            color: #f3f4f6;
+            background: radial-gradient(circle at 50% 0%, var(--bg-mid) 0%, var(--bg-deep) 65%);
+            color: var(--text-primary);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 24px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient aurora glow, echoing Windows' Fluent/Spotlight backdrop without copying any wallpaper */
+        .aurora {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .aurora span {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.28;
+            animation: drift 22s ease-in-out infinite alternate;
+        }
+
+        .aurora span:nth-child(1) {
+            width: 420px;
+            height: 420px;
+            top: -120px;
+            left: -80px;
+            background: var(--accent-blue);
+            animation-delay: 0s;
+        }
+
+        .aurora span:nth-child(2) {
+            width: 380px;
+            height: 380px;
+            bottom: -140px;
+            right: -100px;
+            background: var(--accent-violet);
+            animation-delay: -8s;
+        }
+
+        .aurora span:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            top: 40%;
+            left: 60%;
+            background: var(--accent-cyan);
+            animation-delay: -14s;
+            opacity: 0.18;
+        }
+
+        @keyframes drift {
+            0%   { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, -30px) scale(1.12); }
         }
 
         .container {
             max-width: 600px;
             width: 100%;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .profile-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.07);
+            background: var(--glass-fill);
+            backdrop-filter: blur(22px) saturate(160%);
+            -webkit-backdrop-filter: blur(22px) saturate(160%);
+            border: 1px solid var(--glass-border);
             padding: 35px 25px;
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+            position: relative;
+        }
+
+        /* Fluent-style top highlight sheen on the acrylic card */
+        .profile-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
         }
 
         .profile-header {
@@ -46,10 +132,15 @@
             width: 96px;
             height: 96px;
             border-radius: 50%;
-            border: 2px solid rgba(0, 120, 212, 0.6);
+            border: 2px solid rgba(13, 127, 224, 0.65);
             margin-bottom: 16px;
             object-fit: cover;
-            box-shadow: 0 0 25px rgba(0, 120, 212, 0.3);
+            box-shadow: 0 0 0 6px rgba(13, 127, 224, 0.08), 0 0 30px rgba(79, 209, 255, 0.25);
+            transition: box-shadow 0.4s ease;
+        }
+
+        .profile-img:hover {
+            box-shadow: 0 0 0 8px rgba(13, 127, 224, 0.12), 0 0 40px rgba(79, 209, 255, 0.4);
         }
 
         h1 {
@@ -61,40 +152,63 @@
         }
 
         .tagline {
-            font-size: 0.95rem;
-            color: #0078d4;
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
             font-weight: 500;
             letter-spacing: 0.5px;
             text-transform: uppercase;
             margin-bottom: 16px;
+            font-family: var(--mono);
         }
 
         .bio {
             font-size: 0.95rem;
-            color: #9ca3af;
+            color: var(--text-muted);
             line-height: 1.6;
-            margin-bottom: 28px;
+            margin-bottom: 20px;
             padding: 0 10px;
         }
 
+        /* Keycap-style section eyebrows — a nod to the channel's own subject matter */
         .section-label {
+            display: inline-flex;
+            align-items: center;
             text-align: left;
-            font-size: 0.75rem;
-            font-weight: 700;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #0078d4;
-            margin: 22px 0 10px;
-            padding-left: 4px;
+            color: var(--accent-cyan);
+            background: linear-gradient(180deg, #1c2434, #11161f);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-bottom: 2px solid rgba(0, 0, 0, 0.45);
+            border-radius: 6px;
+            padding: 5px 11px;
+            margin: 22px 0 12px;
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+        }
+
+        .section-row {
+            display: flex;
+            justify-content: flex-start;
         }
 
         .video-widget-container {
             width: 100%;
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--glass-fill);
+            border: 1px solid var(--glass-border);
             border-radius: 16px;
             padding: 12px;
             margin-bottom: 18px;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        }
+
+        .video-widget-container:hover {
+            transform: translateY(-4px);
+            border-color: var(--glass-border-hover);
+            background: var(--glass-fill-hover);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(79, 209, 255, 0.12);
         }
 
         .widget-title {
@@ -110,7 +224,7 @@
 
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             border-radius: 10px;
@@ -126,7 +240,6 @@
             border: 0;
         }
 
-        /* Shorts row: two vertical (9:16) players side by side */
         .shorts-row {
             display: flex;
             gap: 12px;
@@ -139,7 +252,7 @@
 
         .shorts-wrapper {
             position: relative;
-            padding-bottom: 177.77%; /* 9:16 Aspect Ratio */
+            padding-bottom: 177.77%;
             height: 0;
             overflow: hidden;
             border-radius: 10px;
@@ -158,14 +271,14 @@
         .video-caption {
             text-align: left;
             font-size: 0.8rem;
-            color: #9ca3af;
+            color: var(--text-muted);
             margin-top: 8px;
             padding-left: 4px;
             padding-right: 4px;
         }
 
         .btn-primary {
-            background: #0078d4;
+            background: linear-gradient(135deg, var(--accent-blue), #0a63b3);
             color: #ffffff;
             font-weight: 600;
             font-size: 1rem;
@@ -176,31 +289,41 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0, 120, 212, 0.3);
-            margin-top: 6px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(13, 127, 224, 0.35);
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Fluent-style shine sweep on hover */
+        .btn-primary::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -60%;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+            transform: skewX(-20deg);
+            transition: left 0.6s ease;
         }
 
         .btn-primary:hover {
-            background: #1085e0;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(0, 120, 212, 0.45);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(13, 127, 224, 0.5);
+        }
+
+        .btn-primary:hover::after {
+            left: 130%;
         }
 
         .btn-primary:active {
-            transform: translateY(1px);
-        }
-
-        .arrow {
-            transition: transform 0.2s ease;
-        }
-
-        .btn-primary:hover .arrow {
-            transform: translateX(3px);
+            transform: translateY(0px);
         }
 
         footer {
-            margin-top: 30px;
+            margin-top: 26px;
             font-size: 0.78rem;
             color: #4b5563;
             letter-spacing: 0.3px;
@@ -211,9 +334,26 @@
                 flex-direction: column;
             }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            .aurora span {
+                animation: none;
+            }
+            .video-widget-container,
+            .btn-primary,
+            .profile-img {
+                transition: none;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <div class="aurora" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
     <div class="container">
         <div class="profile-card">
@@ -227,7 +367,7 @@
                 Deep dives into Windows optimization workflows, interface enhancements, and efficiency tips. Helping you unlock the full capability of your system safely.
             </p>
 
-            <div class="section-label">Videos</div>
+            <div class="section-row"><div class="section-label">Videos</div></div>
 
             <div class="video-widget-container">
                 <div class="widget-title">📺 Latest Upload</div>
@@ -245,7 +385,7 @@
                 <div class="video-caption" id="most-viewed-title"></div>
             </div>
 
-            <div class="section-label">Shorts</div>
+            <div class="section-row"><div class="section-label">Shorts</div></div>
 
             <div class="shorts-row">
                 <div class="video-widget-container">
