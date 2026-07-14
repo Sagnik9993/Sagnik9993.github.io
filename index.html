@@ -83,7 +83,7 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 16px;
             padding: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 18px;
         }
 
         .widget-title {
@@ -115,6 +115,15 @@
             border: 0;
         }
 
+        .video-caption {
+            text-align: left;
+            font-size: 0.8rem;
+            color: #9ca3af;
+            margin-top: 8px;
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+
         .btn-primary {
             background: #0078d4;
             color: #ffffff;
@@ -129,6 +138,7 @@
             gap: 10px;
             transition: all 0.2s ease;
             box-shadow: 0 4px 15px rgba(0, 120, 212, 0.3);
+            margin-top: 6px;
         }
 
         .btn-primary:hover {
@@ -171,15 +181,20 @@
                 Deep dives into Windows optimization workflows, interface enhancements, and efficiency tips. Helping you unlock the full capability of your system safely.
             </p>
 
-           <div class="video-widget-container">
-    <div class="widget-title">📺 Featured Video</div>
-    <div class="video-wrapper">
-        <iframe 
-            src="https://www.youtube.com/embed/7sMcI5YCrSg" 
-            allowfullscreen>
-        </iframe>
-    </div>
-</div>
+            <div class="video-widget-container">
+                <div class="widget-title">📺 Latest Upload</div>
+                <div class="video-wrapper">
+                    <iframe id="latest-video" src="" allowfullscreen></iframe>
+                </div>
+                <div class="video-caption" id="latest-title"></div>
+            </div>
+
+            <div class="video-widget-container">
+                <div class="widget-title">🔥 Most Viewed</div>
+                <div class="video-wrapper">
+                    <iframe id="most-viewed-video" src="" allowfullscreen></iframe>
+                </div>
+                <div class="video-caption" id="most-viewed-title"></div>
             </div>
 
             <a href="https://www.youtube.com/@windowstipsntricks" target="_blank" class="btn-primary">
@@ -192,6 +207,26 @@
             © 2026 Sagnik Dey. All rights reserved.
         </footer>
     </div>
+
+    <script>
+        fetch('videos.json')
+            .then(res => res.json())
+            .then(data => {
+                if (data.latest) {
+                    document.getElementById('latest-video').src =
+                        `https://www.youtube.com/embed/${data.latest.id}`;
+                    document.getElementById('latest-title').textContent =
+                        data.latest.title || '';
+                }
+                if (data.mostViewed) {
+                    document.getElementById('most-viewed-video').src =
+                        `https://www.youtube.com/embed/${data.mostViewed.id}`;
+                    document.getElementById('most-viewed-title').textContent =
+                        data.mostViewed.title || '';
+                }
+            })
+            .catch(err => console.error('Could not load video data:', err));
+    </script>
 
 </body>
 </html>
