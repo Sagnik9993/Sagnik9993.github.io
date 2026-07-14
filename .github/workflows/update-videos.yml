@@ -2,8 +2,8 @@ name: Update Featured Videos
 
 on:
   schedule:
-    - cron: "0 */6 * * *"   # every 6 hours
-  workflow_dispatch:         # lets you trigger it manually too
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -20,42 +20,11 @@ jobs:
       - name: Fetch channel video data
         run: |
           yt-dlp --flat-playlist --playlist-end 100 -J \
-            "https://www.youtube.com/@windowstipsntricks/videos" > raw_videos.json
+            "https://www.youtube.com/@windowstipsntricks/videos" > raw_videos.json || echo '{"entries": []}' > raw_videos.json
+
           yt-dlp --flat-playlist --playlist-end 100 -J \
-            "https://www.youtube.com/@windowstipsntricks/shorts" > raw_shorts.json
-          python3 scripts/parse-videos.py
+            "https://www.youtube.com/@windowstipsntricks/shorts" > raw_shorts.json || echo '{"entries": []}' > raw_shorts.json
 
-      - name: Commit changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add videos.json
-          git diff --staged --quiet || git commit -m "Update featured videos"
-          git pushname: Update Featured Videos
-
-on:
-  schedule:
-    - cron: "0 */6 * * *"   # every 6 hours
-  workflow_dispatch:         # lets you trigger it manually too
-
-permissions:
-  contents: write
-
-jobs:
-  update:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install yt-dlp
-        run: pip install -U yt-dlp
-
-      - name: Fetch channel video data
-        run: |
-          yt-dlp --flat-playlist --playlist-end 100 -J \
-            "https://www.youtube.com/@windowstipsntricks/videos" > raw_videos.json
-          yt-dlp --flat-playlist --playlist-end 100 -J \
-            "https://www.youtube.com/@windowstipsntricks/shorts" > raw_shorts.json
           python3 scripts/parse-videos.py
 
       - name: Commit changes
