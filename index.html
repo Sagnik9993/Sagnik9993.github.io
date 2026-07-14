@@ -1,135 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5093546807171756"
-     crossorigin="anonymous"></script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sagnik's Information</title>
+    <title>Windows Tips & Tricks | Official Site</title>
     <style>
-        @keyframes colorChange {
-            0%   { color: #FF4747; }
-            25%  { color: #00FF00; }
-            50%  { color: #00CCFF; }
-            75%  { color: #FFFF00; }
-            100% { color: #FF4747; }
-        }
-        @keyframes rotateGlow {
-            0% { border-color: #4285F4; box-shadow: 0 0 15px #4285F4; }
-            25% { border-color: #DB4437; box-shadow: 0 0 15px #DB4437; }
-            50% { border-color: #F4B400; box-shadow: 0 0 15px #F4B400; }
-            75% { border-color: #0F9D58; box-shadow: 0 0 15px #0F9D58; }
-            100% { border-color: #4285F4; box-shadow: 0 0 15px #4285F4; }
-        }
-        .colorful-text {
-            animation: colorChange 4s linear infinite;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            font-size: 2.2em;
-            font-weight: bold;
-        }
-        body {
-            background-color: #00FFFF;
-            color: #333;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             padding: 20px;
-            text-align: center;
-            overflow-x: hidden;
         }
+
         .container {
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            padding: 30px;
-            border-radius: 20px;
-            display: inline-block;
-            text-align: left;
-            max-width: 85%;
-            width: 500px;
-            border-left: 12px solid rgba(255, 71, 71, 0.8);
-            border-top: 12px solid rgba(0, 204, 255, 0.8);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1), opacity 1.2s ease;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-        .container.reveal {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .video-card {
-            margin-top: 25px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(5px);
-            border-radius: 12px;
-            border: 4px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.4s ease;
-        }
-        .video-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            animation: rotateGlow 3s linear infinite;
-            background: rgba(255, 255, 255, 0.8);
-        }
-        video {
+            max-width: 650px;
             width: 100%;
-            border-radius: 8px;
-            background: #000;
+            text-align: center;
         }
-        .music-link {
-            margin-top: 30px;
-            font-size: 1.1em;
-            font-weight: bold;
+
+        .profile-header {
+            margin-bottom: 25px;
+        }
+
+        .profile-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3px solid #0078d4;
+            margin-bottom: 15px;
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(0, 120, 212, 0.4);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: #9ca3af;
+            margin-bottom: 15px;
+        }
+
+        .bio {
+            font-size: 0.95rem;
+            color: #d1d5db;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.03);
             padding: 15px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 10px;
-            transition: all 0.3s ease;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .music-link:hover {
-            background: #ffffff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transform: translateY(-3px);
+
+        .video-widget-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
-        a {
-            color: #0000FF;
-            text-decoration: underline;
+
+        .widget-title {
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #0078d4;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .card-link {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.25s ease;
+        }
+
+        .card-link:hover {
+            background: rgba(0, 120, 212, 0.15);
+            border-color: #0078d4;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 120, 212, 0.2);
+        }
+
+        .link-info {
+            text-align: left;
+        }
+
+        .link-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 3px;
+        }
+
+        .link-desc {
+            font-size: 0.85rem;
+            color: #9ca3af;
+        }
+
+        .icon {
+            font-size: 1.2rem;
+            color: #0078d4;
+        }
+
+        footer {
+            margin-top: 35px;
+            font-size: 0.8rem;
+            color: #4b5563;
         }
     </style>
 </head>
 <body>
 
-    <marquee scrollamount="8">
-        <h1 class="colorful-text">Information About Sagnik</h1>
-    </marquee>
+    <div class="container">
+        <div class="profile-header">
+            <img class="profile-img" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=150" alt="Channel Logo">
+            <h1>Windows Tips & Tricks</h1>
+            <p class="tagline">Smoother, Better, and More Productive.</p>
+        </div>
 
-    <div class="container" id="mainContainer">
-        <p style="font-size: 1.2em; line-height: 1.6; color: #1a1a1a;">
-            <b>Standard:</b> 9th Standard, St. James' School, Binnaguri<br>
-            <b>Location:</b> Ethelbari, Checkpost
+        <p class="bio">
+            Optimizing Windows 11 layouts, unlocking hidden configurations, speed scripting, and exploring safe cybersecurity tricks. 100% safe, verified tech walkthroughs.
         </p>
 
-        <div class="video-card">
-            <p style="color: #FF4747; font-weight: bold; margin-top: 0;">🎬 Featured Video: Illuminati (From "Aavesham")</p>
-            <video controls>
-                <source src="track.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <div class="video-widget-container">
+            <div class="widget-title">📺 Stream Latest Video & Highlights</div>
+            <div class="video-wrapper">
+                <iframe 
+                    src="https://www.youtube.com/embed?listType=user_uploads&relative_url=1&amp;list=UUQ_c1bS9X4vG_pAex07uO5A" 
+                    allowfullscreen>
+                </iframe>
+            </div>
         </div>
 
-        <div class="music-link">
-            <p style="margin: 0;">If you want to listen to some music to calm your mind 
-               <a href="playlist.html">click here</a>
-            </p>
+        <div class="links-container">
+            <a href="https://www.youtube.com/@windowstipsntricks" target="_blank" class="card-link">
+                <div class="link-info">
+                    <div class="link-title">🔴 Official YouTube Hub</div>
+                    <div class="link-desc">Subscribe to browse all technical shorts and full playlists.</div>
+                </div>
+                <span class="icon">➔</span>
+            </a>
+
+            <a href="https://github.com/sagnik9993" target="_blank" class="card-link">
+                <div class="link-info">
+                    <div class="link-title">💻 Code Repository & Scripts</div>
+                    <div class="link-desc">Check out utility configuration codes and projects cleanly.</div>
+                </div>
+                <span class="icon">➔</span>
+            </a>
         </div>
+
+        <footer>
+            © 2026 Sagnik Dey. Powered cleanly by GitHub Pages.
+        </footer>
     </div>
 
-    <script>
-        window.onload = function() {
-            setTimeout(function() {
-                document.getElementById('mainContainer').classList.add('reveal');
-            }, 100);
-        };
-    </script>
 </body>
 </html>
