@@ -1,10 +1,16 @@
 import json
 
 def load_entries(path):
-    with open(path) as f:
-        return json.load(f)["entries"]
+    try:
+        with open(path) as f:
+            data = json.load(f)
+        return data.get("entries") or []
+    except Exception as e:
+        print(f"Could not load {path}: {e}")
+        return []
 
 def pick_latest_and_top(entries):
+    entries = [e for e in entries if e and e.get("id")]
     if not entries:
         return None, None
     latest = entries[0]
