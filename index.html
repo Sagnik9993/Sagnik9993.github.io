@@ -77,6 +77,17 @@
             padding: 0 10px;
         }
 
+        .section-label {
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #0078d4;
+            margin: 22px 0 10px;
+            padding-left: 4px;
+        }
+
         .video-widget-container {
             width: 100%;
             background: rgba(0, 0, 0, 0.2);
@@ -107,6 +118,35 @@
         }
 
         .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Shorts row: two vertical (9:16) players side by side */
+        .shorts-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .shorts-row .video-widget-container {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .shorts-wrapper {
+            position: relative;
+            padding-bottom: 177.77%; /* 9:16 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #000;
+        }
+
+        .shorts-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -165,6 +205,12 @@
             color: #4b5563;
             letter-spacing: 0.3px;
         }
+
+        @media (max-width: 420px) {
+            .shorts-row {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
@@ -181,6 +227,8 @@
                 Deep dives into Windows optimization workflows, interface enhancements, and efficiency tips. Helping you unlock the full capability of your system safely.
             </p>
 
+            <div class="section-label">Videos</div>
+
             <div class="video-widget-container">
                 <div class="widget-title">📺 Latest Upload</div>
                 <div class="video-wrapper">
@@ -195,6 +243,26 @@
                     <iframe id="most-viewed-video" src="" allowfullscreen></iframe>
                 </div>
                 <div class="video-caption" id="most-viewed-title"></div>
+            </div>
+
+            <div class="section-label">Shorts</div>
+
+            <div class="shorts-row">
+                <div class="video-widget-container">
+                    <div class="widget-title">⚡ Latest Short</div>
+                    <div class="shorts-wrapper">
+                        <iframe id="latest-short" src="" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-caption" id="latest-short-title"></div>
+                </div>
+
+                <div class="video-widget-container">
+                    <div class="widget-title">🔥 Top Short</div>
+                    <div class="shorts-wrapper">
+                        <iframe id="most-viewed-short" src="" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-caption" id="most-viewed-short-title"></div>
+                </div>
             </div>
 
             <a href="https://www.youtube.com/@windowstipsntricks" target="_blank" class="btn-primary">
@@ -223,6 +291,18 @@
                         `https://www.youtube.com/embed/${data.mostViewed.id}`;
                     document.getElementById('most-viewed-title').textContent =
                         data.mostViewed.title || '';
+                }
+                if (data.latestShort) {
+                    document.getElementById('latest-short').src =
+                        `https://www.youtube.com/embed/${data.latestShort.id}`;
+                    document.getElementById('latest-short-title').textContent =
+                        data.latestShort.title || '';
+                }
+                if (data.mostViewedShort) {
+                    document.getElementById('most-viewed-short').src =
+                        `https://www.youtube.com/embed/${data.mostViewedShort.id}`;
+                    document.getElementById('most-viewed-short-title').textContent =
+                        data.mostViewedShort.title || '';
                 }
             })
             .catch(err => console.error('Could not load video data:', err));
